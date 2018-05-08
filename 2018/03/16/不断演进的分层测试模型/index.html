@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+
+
+  <meta name="keywords" content="selenium,自动化测试," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="不断演进的分层测试模型分层测试的概念已经提出来多年了，至今已经不再新鲜，不过最近却发现分层测试的模型有了一些演进，在这里给大家分享一下。 三种模型分层测试把测试分层了3个层次，从下往上分别是: 单元测试，服务级的测试以及ui测试。上图展示了3种不同的测试成熟度模型，分别是  测试冰淇淋模型 测试金字塔模型 测试橄榄球模型">
+<meta name="keywords" content="selenium,自动化测试">
+<meta property="og:type" content="article">
+<meta property="og:title" content="不断演进的分层测试模型">
+<meta property="og:url" content="http://haoweisz.top/2018/03/16/不断演进的分层测试模型/index.html">
+<meta property="og:site_name" content="bear&#39;s blog">
+<meta property="og:description" content="不断演进的分层测试模型分层测试的概念已经提出来多年了，至今已经不再新鲜，不过最近却发现分层测试的模型有了一些演进，在这里给大家分享一下。 三种模型分层测试把测试分层了3个层次，从下往上分别是: 单元测试，服务级的测试以及ui测试。上图展示了3种不同的测试成熟度模型，分别是  测试冰淇淋模型 测试金字塔模型 测试橄榄球模型">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://otfah9orz.bkt.clouddn.com/level.png">
+<meta property="og:updated_time" content="2018-05-08T07:28:32.714Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="不断演进的分层测试模型">
+<meta name="twitter:description" content="不断演进的分层测试模型分层测试的概念已经提出来多年了，至今已经不再新鲜，不过最近却发现分层测试的模型有了一些演进，在这里给大家分享一下。 三种模型分层测试把测试分层了3个层次，从下往上分别是: 单元测试，服务级的测试以及ui测试。上图展示了3种不同的测试成熟度模型，分别是  测试冰淇淋模型 测试金字塔模型 测试橄榄球模型">
+<meta name="twitter:image" content="http://otfah9orz.bkt.clouddn.com/level.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haoweisz.top/2018/03/16/不断演进的分层测试模型/"/>
+
+
+
+
+
+  <title>不断演进的分层测试模型 | bear's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bear's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小熊变老熊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/03/16/不断演进的分层测试模型/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">不断演进的分层测试模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-16T14:34:20+08:00">
+                2018-03-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span id="busuanzi_container_page_pv">&nbsp;&nbsp;|&nbsp;&nbsp;阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="不断演进的分层测试模型"><a href="#不断演进的分层测试模型" class="headerlink" title="不断演进的分层测试模型"></a>不断演进的分层测试模型</h1><p>分层测试的概念已经提出来多年了，至今已经不再新鲜，不过最近却发现分层测试的模型有了一些演进，在这里给大家分享一下。</p>
+<h3 id="三种模型"><a href="#三种模型" class="headerlink" title="三种模型"></a>三种模型</h3><p>分层测试把测试分层了3个层次，从下往上分别是: 单元测试，服务级的测试以及ui测试。<br><img src="http://otfah9orz.bkt.clouddn.com/level.png" alt="三种模型"><br>上图展示了3种不同的测试成熟度模型，分别是</p>
+<ul>
+<li>测试冰淇淋模型</li>
+<li>测试金字塔模型</li>
+<li>测试橄榄球模型<a id="more"></a>
+</li>
+</ul>
+<h3 id="测试冰淇淋模型"><a href="#测试冰淇淋模型" class="headerlink" title="测试冰淇淋模型"></a>测试冰淇淋模型</h3><p>这种模型的特点如下</p>
+<ul>
+<li>单元测试很少</li>
+<li>有一定的服务级的接口测试</li>
+<li>测试的重点放在通过ui去测试系统的功能上<br>由于单元测试和接口测试有限，在这种模型下，持续集成的实现难度很高。质量的重心放在ui上，就意味着系统必须充分开发完成并且正确部署之后才能进行测试，测试的开始时间相对就会较晚，面临着测试时间不充分的风险。自动化测试率有限，测试周期相对可能较长。ui测试较多，一些代码级的异常在ui测试时相对难以构造，有较高的测试不充分的风险。单元测试少就意味着代码改动的影响很难第一时间得到发现和评估，有可能出现改1个bug送几个bug的情况。大多数团队可能都符合这个模型。</li>
+</ul>
+<h3 id="测试金字塔模型"><a href="#测试金字塔模型" class="headerlink" title="测试金字塔模型"></a>测试金字塔模型</h3><p>对于单体应用来讲，测试金字塔模型是一个比较理想的模型，特点如下</p>
+<ul>
+<li>单元测试非常多</li>
+<li>接口级的测试相对少一点点</li>
+<li>ui级的测试最少，通常只是用户验证性的测试，可以用自动化测试去做<br>这种模型的好处不言而喻，不过由于该模型对开发人员的测试能力要求很高，而且质量控制基本成为开发的本职工作，所以在一些测试和开发完全分离的团队以及开发技能一般的团队，这种模式往往难以推广。不过一些著名的开源项目基本上都符合这个模型。</li>
+</ul>
+<h3 id="测试橄榄球模型"><a href="#测试橄榄球模型" class="headerlink" title="测试橄榄球模型"></a>测试橄榄球模型</h3><ul>
+<li>单元测试相对较少</li>
+<li>测试的重心放在接口级的测试上，并且提倡高度自动化</li>
+<li>ui级的测试可以较少<br>对于微服务模型的项目来说，服务之间沟通交流的方式一定是各种接口，所以接口是微服务模型项目和产品的核心。橄榄球模型正是抓住了这个重点，把测试的重心放在接口上。由于单元测试用例的开发需要额外的知识及技能，加上大家对单元测试的重要性理解也不太一致，所以这个模型弱化了单元测试的作用。ui测试由于开始的时间较晚以及实现和执行成本较高，所以这里也相对弱化。对于测试同学来说，橄榄球模型里我们可以承担大部分接口层的用例编写以及依赖服务接口的mock工作。另外微服务间的协作与信息对称对质量保障来说也是挑战，测试同学可以重点关注一下。最后，我说的基本上都是错的。每个团队有不同的质量要求和实践，没有标准，只有参考。</li>
+</ul>
+<h6 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h6><blockquote>
+<p>测试教程网-不断演进的分层测试模型  <a href="http://www.testclass.net/2018/01/25/test_level/" target="_blank" rel="noopener">原文链接</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/selenium/" rel="tag"># selenium</a>
+          
+            <a href="/tags/自动化测试/" rel="tag"># 自动化测试</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/17/Selenium下免登陆profile的套路/" rel="prev" title="Selenium下免登陆profile的套路">
+                Selenium下免登陆profile的套路 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/bear.jpg"
+                alt="熊叔" />
+            
+              <p class="site-author-name" itemprop="name">熊叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hw1426" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:haoweisz05@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.testclass.net/" title="测试教程网" target="_blank">测试教程网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.testpub.cn/" title="测试学习小组" target="_blank">测试学习小组</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#不断演进的分层测试模型"><span class="nav-number">1.</span> <span class="nav-text">不断演进的分层测试模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#三种模型"><span class="nav-number">1.0.1.</span> <span class="nav-text">三种模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试冰淇淋模型"><span class="nav-number">1.0.2.</span> <span class="nav-text">测试冰淇淋模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试金字塔模型"><span class="nav-number">1.0.3.</span> <span class="nav-text">测试金字塔模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试橄榄球模型"><span class="nav-number">1.0.4.</span> <span class="nav-text">测试橄榄球模型</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#引用"><span class="nav-number">1.0.4.0.0.1.</span> <span class="nav-text">引用</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">熊叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+&nbsp;&nbsp;|&nbsp;&nbsp;本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

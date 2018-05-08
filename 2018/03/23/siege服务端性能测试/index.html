@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+
+
+  <meta name="keywords" content="siege," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="引用：《实战siege性能测试》《深入实战性能测试》-乙醇  测试环境 服务器：Ubuntu 16.04.3 LTS siege版本： 4.0.2  目的 熟悉Linux服务器环境软件安装 熟悉使用命令行测试工具 熟悉查看性能测试结果">
+<meta name="keywords" content="siege">
+<meta property="og:type" content="article">
+<meta property="og:title" content="siege服务端性能测试">
+<meta property="og:url" content="http://haoweisz.top/2018/03/23/siege服务端性能测试/index.html">
+<meta property="og:site_name" content="bear&#39;s blog">
+<meta property="og:description" content="引用：《实战siege性能测试》《深入实战性能测试》-乙醇  测试环境 服务器：Ubuntu 16.04.3 LTS siege版本： 4.0.2  目的 熟悉Linux服务器环境软件安装 熟悉使用命令行测试工具 熟悉查看性能测试结果">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-30T07:20:33.112Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="siege服务端性能测试">
+<meta name="twitter:description" content="引用：《实战siege性能测试》《深入实战性能测试》-乙醇  测试环境 服务器：Ubuntu 16.04.3 LTS siege版本： 4.0.2  目的 熟悉Linux服务器环境软件安装 熟悉使用命令行测试工具 熟悉查看性能测试结果">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haoweisz.top/2018/03/23/siege服务端性能测试/"/>
+
+
+
+
+
+  <title>siege服务端性能测试 | bear's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bear's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小熊变老熊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/03/23/siege服务端性能测试/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">siege服务端性能测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-23T10:14:11+08:00">
+                2018-03-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span id="busuanzi_container_page_pv">&nbsp;&nbsp;|&nbsp;&nbsp;阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化测试</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化测试/性能测试/" itemprop="url" rel="index">
+                    <span itemprop="name">性能测试</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>引用：《实战siege性能测试》《深入实战性能测试》-乙醇</p>
+</blockquote>
+<h4 id="测试环境"><a href="#测试环境" class="headerlink" title="测试环境"></a>测试环境</h4><ul>
+<li>服务器：Ubuntu 16.04.3 LTS</li>
+<li>siege版本： 4.0.2</li>
+</ul>
+<h4 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h4><ul>
+<li>熟悉Linux服务器环境软件安装</li>
+<li>熟悉使用命令行测试工具</li>
+<li>熟悉查看性能测试结果</li>
+</ul>
+<a id="more"></a>
+<hr>
+<h3 id="安装篇"><a href="#安装篇" class="headerlink" title="安装篇"></a>安装篇</h3><h4 id="更新系统"><a href="#更新系统" class="headerlink" title="更新系统"></a>更新系统</h4><pre><code>sudo apt-get update &amp;&amp; sudo apt-get upgrade --show-upgrade
+</code></pre><h4 id="下载最新版本siege"><a href="#下载最新版本siege" class="headerlink" title="下载最新版本siege"></a>下载最新版本siege</h4><pre><code>wget http://download.joedog.org/siege/siege-latest.tar.gz
+</code></pre><h4 id="解压进siege路径"><a href="#解压进siege路径" class="headerlink" title="解压进siege路径"></a>解压进siege路径</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf siege-latest.tar.gz</span><br><span class="line">cd siege-*/</span><br></pre></td></tr></table></figure>
+<h4 id="如果没有安装编译工具，先安装build-essential"><a href="#如果没有安装编译工具，先安装build-essential" class="headerlink" title="如果没有安装编译工具，先安装build-essential"></a>如果没有安装编译工具，先安装build-essential</h4><pre><code>sudo apt-get install build-essential
+</code></pre><h4 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br><span class="line">make</span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure>
+<h4 id="创建配置文件"><a href="#创建配置文件" class="headerlink" title="创建配置文件"></a>创建配置文件</h4><pre><code>siege.config
+</code></pre><h4 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h4><p>打开~/siege/siege.conf文件，修改logfile选项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">logfile = $(HOME)/siege.log</span><br></pre></td></tr></table></figure></p>
+<h4 id="安装验证"><a href="#安装验证" class="headerlink" title="安装验证"></a>安装验证</h4><pre><code>tim@TIM:~$ siege -v
+[alert] Zip encoding disabled; siege requires zlib support to enable it
+SIEGE 4.0.4
+Usage: siege [options]
+       siege [options] URL
+       siege -g URL
+Options:
+  -V, --version             VERSION, prints the version number.
+  -h, --help                HELP, prints this section.
+  -C, --config              CONFIGURATION, show the current config.
+  -v, --verbose             VERBOSE, prints notification to screen.
+  -q, --quiet               QUIET turns verbose off and suppresses output.
+  -g, --get                 GET, pull down HTTP headers and display the
+                            transaction. Great for application debugging.
+  -p, --print               PRINT, like GET only it prints the entire page.
+  -c, --concurrent=NUM      CONCURRENT users, default is 10
+  -r, --reps=NUM            REPS, number of times to run the test.
+  -t, --time=NUMm           TIMED testing where &quot;m&quot; is modifier S, M, or H
+                            ex: --time=1H, one hour test.
+  -d, --delay=NUM           Time DELAY, random delay before each requst
+  -b, --benchmark           BENCHMARK: no delays between requests.
+  -i, --internet            INTERNET user simulation, hits URLs randomly.
+  -f, --file=FILE           FILE, select a specific URLS FILE.
+  -R, --rc=FILE             RC, specify an siegerc file
+  -l, --log[=FILE]          LOG to FILE. If FILE is not specified, the
+                            default is used: PREFIX/var/siege.log
+  -m, --mark=&quot;text&quot;         MARK, mark the log file with a string.
+                            between .001 and NUM. (NOT COUNTED IN STATS)
+  -H, --header=&quot;text&quot;       Add a header to request (can be many)
+  -A, --user-agent=&quot;text&quot;   Sets User-Agent in request
+  -T, --content-type=&quot;text&quot; Sets Content-Type in request
+      --no-parser           NO PARSER, turn off the HTML page parser
+      --no-follow           NO FOLLOW, do not follow HTTP redirects
+
+Copyright (C) 2017 by Jeffrey Fulmer, et al.
+This is free software; see the source for copying conditions.
+There is NO warranty; not even for MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.
+</code></pre><hr>
+<h3 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">  -c</td>
+<td style="text-align:center">指定并发数</td>
+</tr>
+<tr>
+<td style="text-align:center">  -r</td>
+<td style="text-align:center">指定重复次数</td>
+</tr>
+<tr>
+<td style="text-align:center">  -d</td>
+<td style="text-align:center">指定请求的延迟时间，注意每个请求间随机延迟</td>
+</tr>
+<tr>
+<td style="text-align:center">  -f</td>
+<td style="text-align:center">指定url列表，可以一次给多个地址加压</td>
+</tr>
+<tr>
+<td style="text-align:center">  -t</td>
+<td style="text-align:center">指定用例执行时间，比如-t 10s -t 1M(H)之类</td>
+</tr>
+<tr>
+<td style="text-align:center">  -g</td>
+<td style="text-align:center">获取请求的headers信息并打印出来，debug专用</td>
+</tr>
+<tr>
+<td style="text-align:center">  -H</td>
+<td style="text-align:center">指定请求的headers信息</td>
+</tr>
+<tr>
+<td style="text-align:center">  -l或–log=[File]</td>
+<td style="text-align:center">指定测试结果的路径</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h3 id="实战篇"><a href="#实战篇" class="headerlink" title="实战篇"></a>实战篇</h3><h4 id="测试需求-part1"><a href="#测试需求-part1" class="headerlink" title="测试需求-part1"></a>测试需求-part1</h4><h5 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h5><p>对<a href="http://haoweisz.top">本站</a>加压，要求模拟10个Vuser同时访问，一共跑2个循环。</p>
+<h5 id="实现："><a href="#实现：" class="headerlink" title="实现："></a>实现：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">siege -c 10 -r 2 http://haoweisz.top</span><br></pre></td></tr></table></figure>
+<h5 id="测试结果："><a href="#测试结果：" class="headerlink" title="测试结果："></a>测试结果：</h5><pre><code>Transactions:                 720 hits
+Availability:              100.00 %
+Elapsed time:               21.86 secs
+Data transferred:           14.36 MB
+Response time:                0.45 secs
+Transaction rate:           32.94 trans/sec
+Throughput:                0.66 MB/sec
+Concurrency:               14.82
+Successful transactions:         720
+Failed transactions:               0
+Longest transaction:            3.98
+Shortest transaction:            0.01
+</code></pre><h5 id="搞明白结果含义："><a href="#搞明白结果含义：" class="headerlink" title="搞明白结果含义："></a>搞明白结果含义：</h5><table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Transactions</td>
+<td style="text-align:left">siege对服务器的访问次数。如果页面发生了redirect，那么siege会将跳转过的请求算成是另一个transaction</td>
+</tr>
+<tr>
+<td style="text-align:left">Availability</td>
+<td style="text-align:left">socket连接的成功率。算法是，如果页面发生了timeout,4xx,5xx，那么该请求算是失败请求，成功率就等于(所有请求-失败请求) / 总请求数</td>
+</tr>
+<tr>
+<td style="text-align:left">Elapsed time</td>
+<td style="text-align:left">所有请求耗费的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Data transferred</td>
+<td style="text-align:left">所有请求传输的数据量，包括请求的headers和content。所以这个数值可能比server端统计的数值要大一点</td>
+</tr>
+<tr>
+<td style="text-align:left">Response time</td>
+<td style="text-align:left">平均响应时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Transaction rate</td>
+<td style="text-align:left">Transactions / Elapsed time</td>
+</tr>
+<tr>
+<td style="text-align:left">Throughput</td>
+<td style="text-align:left">每秒平均传输的数据量</td>
+</tr>
+<tr>
+<td style="text-align:left">Concurrency</td>
+<td style="text-align:left">平均并发的请求数</td>
+</tr>
+<tr>
+<td style="text-align:left">Successful transactions</td>
+<td style="text-align:left">所有status code &lt; 400的transactions数量</td>
+</tr>
+<tr>
+<td style="text-align:left">Failed transactions</td>
+<td style="text-align:left">所有status code &gt;= 400的transactions数量</td>
+</tr>
+<tr>
+<td style="text-align:left">Longest transaction</td>
+<td style="text-align:left">最耗时的请求时间</td>
+</tr>
+<tr>
+<td style="text-align:left">Shortest transaction</td>
+<td style="text-align:left">最短单个请求时间</td>
+</tr>
+</tbody>
+</table>
+<h4 id="测试需求-part2"><a href="#测试需求-part2" class="headerlink" title="测试需求-part2"></a>测试需求-part2</h4><h5 id="需求：-1"><a href="#需求：-1" class="headerlink" title="需求："></a>需求：</h5><p>对多页面加压，以便暴露系统瓶颈。（预期并发数为4，持续加压1分钟。）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://haoweisz.top</span><br><span class="line">http://haoweisz.top/categories/</span><br><span class="line">http://haoweisz.top/tags/</span><br></pre></td></tr></table></figure></p>
+<h5 id="实现：-1"><a href="#实现：-1" class="headerlink" title="实现："></a>实现：</h5><p>以上url另存为<code>urls.txt</code>执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">siege -c 4 -t 1M -f urls.txt</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>不设置并发数<code>-c</code>默认值是10</li>
+<li>url文件在其他目录情况下 命令行可用url文件的绝对路径</li>
+<li>日志导出除了做分析，还可以二次开发，性能测试系统每次执行siege命令解析出的数据，持久化至数据库中，生成报表来比对每次性能的提升。</li>
+</ul>
+<h4 id="测试需求-part3"><a href="#测试需求-part3" class="headerlink" title="测试需求-part3"></a>测试需求-part3</h4><h5 id="需求：-2"><a href="#需求：-2" class="headerlink" title="需求："></a>需求：</h5><p>保存日志，多页面加压后，暴露瓶颈，持久化测试日志（生成CSV文件），便于后期调优。</p>
+<h5 id="实现：-2"><a href="#实现：-2" class="headerlink" title="实现："></a>实现：</h5><pre><code>siege -c 4 -t 1M -f urls.txt --log=result.csv
+</code></pre><ul>
+<li>可以使用命令<code>sz result.csv</code>将结果文件拷贝到本地</li>
+<li>如果没有<code>sz</code>命令使用<code>sudo apt-get intall lrzsz</code>安装</li>
+</ul>
+<h4 id="测试需求-part4"><a href="#测试需求-part4" class="headerlink" title="测试需求-part4"></a>测试需求-part4</h4><h5 id="需求：-3"><a href="#需求：-3" class="headerlink" title="需求："></a>需求：</h5><p>压测启用gzig压缩 为提升传输速度启用gzip,可在请求头中加入Accept-Encoding：gzip就能告诉服务器返回压缩后的response。</p>
+<h5 id="实现：-3"><a href="#实现：-3" class="headerlink" title="实现："></a>实现：</h5><pre><code>siege -c 4 -t 1M -f urls.txt -H &quot;Accept-Encoding:gzip&quot; --log=result_gip.csv
+</code></pre><ul>
+<li>不是所有服务器都支持gzip压缩</li>
+<li>在headers加入Accept-Encoding：gzip，可以让支持gzip的服务器返回压缩的响应</li>
+</ul>
+<p>可使用curl命令添加<code>-H</code>参数查看被测站点是否支持gzip,以下命令对比：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl -I http://haoweisz.top</span><br><span class="line">curl -H &quot;Accept-Encoding:gzip&quot; -I http://haoweisz.top</span><br></pre></td></tr></table></figure></p>
+<p>-I 表示打印信息   -H 要求gzip</p>
+<ul>
+<li>TODO 安装zlib库 siege和zlib一起编译</li>
+</ul>
+<p>相关：<a href="https://docs.nginx.com/nginx/admin-guide/web-server/compression/" target="_blank" rel="noopener">番外篇nginx配置gzip</a></p>
+<h4 id="测试需求-part5"><a href="#测试需求-part5" class="headerlink" title="测试需求-part5"></a>测试需求-part5</h4><h5 id="需求：-4"><a href="#需求：-4" class="headerlink" title="需求："></a>需求：</h5><p>对移动站点的压测<br>服务器根据发送的user-agent判断浏览器是PC端还是移动端，在命令中加参数<code>-A&quot;user-agent&quot;</code>已iphone6为例：</p>
+<h5 id="实现：-4"><a href="#实现：-4" class="headerlink" title="实现："></a>实现：</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">siege -c1 -r1 -A&quot;Apple-iPhone7C2/1202.466&quot; http://www.baidu.com</span><br></pre></td></tr></table></figure>
+<p>user-agent<a href="http://enterpriseios.com/wiki/Complete_List_of_iOS_User_Agent_Strings" target="_blank" rel="noopener">信息来源</a>，运行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">tim@TIM:~$ siege -c1 -r1 -A&quot;Apple-iPhone7C2/1202.466&quot; http://www.baidu.com</span><br><span class="line">[alert] Zip encoding disabled; siege requires zlib support to enable it</span><br><span class="line">** SIEGE 4.0.4</span><br><span class="line">** Preparing 1 concurrent users for battle.</span><br><span class="line">The server is now under siege...</span><br><span class="line">HTTP/1.1 200     0.09 secs:    2925 bytes ==&gt; GET  /</span><br><span class="line">HTTP/1.1 200     0.06 secs:    2340 bytes ==&gt; GET  /static/index/u.png</span><br><span class="line"></span><br><span class="line">Transactions:		           2 hits</span><br><span class="line">Availability:		      100.00 %</span><br><span class="line">Elapsed time:		        0.15 secs</span><br><span class="line">Data transferred:	        0.01 MB</span><br><span class="line">Response time:		        0.08 secs</span><br><span class="line">Transaction rate:	       13.33 trans/sec</span><br><span class="line">Throughput:		        0.03 MB/sec</span><br><span class="line">Concurrency:		        1.00</span><br><span class="line">Successful transactions:           2</span><br><span class="line">Failed transactions:	           0</span><br><span class="line">Longest transaction:	        0.09</span><br><span class="line">Shortest transaction:	        0.06</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>用user-agent伪装移动端或PC端访问站点，同理jmeter也可以用user-agent伪装。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/siege/" rel="tag"># siege</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/when-you-are-old/" rel="next" title="When You Are Old">
+                <i class="fa fa-chevron-left"></i> When You Are Old
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/python-pip-configuration/" rel="prev" title="pip 使用阿里镜像">
+                pip 使用阿里镜像 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/bear.jpg"
+                alt="熊叔" />
+            
+              <p class="site-author-name" itemprop="name">熊叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hw1426" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:haoweisz05@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.testclass.net/" title="测试教程网" target="_blank">测试教程网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.testpub.cn/" title="测试学习小组" target="_blank">测试学习小组</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试环境"><span class="nav-number">1.</span> <span class="nav-text">测试环境</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#目的"><span class="nav-number">2.</span> <span class="nav-text">目的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装篇"><span class="nav-number"></span> <span class="nav-text">安装篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更新系统"><span class="nav-number">1.</span> <span class="nav-text">更新系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#下载最新版本siege"><span class="nav-number">2.</span> <span class="nav-text">下载最新版本siege</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解压进siege路径"><span class="nav-number">3.</span> <span class="nav-text">解压进siege路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果没有安装编译工具，先安装build-essential"><span class="nav-number">4.</span> <span class="nav-text">如果没有安装编译工具，先安装build-essential</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#编译安装"><span class="nav-number">5.</span> <span class="nav-text">编译安装</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建配置文件"><span class="nav-number">6.</span> <span class="nav-text">创建配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改配置文件"><span class="nav-number">7.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装验证"><span class="nav-number">8.</span> <span class="nav-text">安装验证</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用参数"><span class="nav-number"></span> <span class="nav-text">常用参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实战篇"><span class="nav-number"></span> <span class="nav-text">实战篇</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试需求-part1"><span class="nav-number">1.</span> <span class="nav-text">测试需求-part1</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#需求："><span class="nav-number">1.1.</span> <span class="nav-text">需求：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现："><span class="nav-number">1.2.</span> <span class="nav-text">实现：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#测试结果："><span class="nav-number">1.3.</span> <span class="nav-text">测试结果：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#搞明白结果含义："><span class="nav-number">1.4.</span> <span class="nav-text">搞明白结果含义：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试需求-part2"><span class="nav-number">2.</span> <span class="nav-text">测试需求-part2</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#需求：-1"><span class="nav-number">2.1.</span> <span class="nav-text">需求：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现：-1"><span class="nav-number">2.2.</span> <span class="nav-text">实现：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试需求-part3"><span class="nav-number">3.</span> <span class="nav-text">测试需求-part3</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#需求：-2"><span class="nav-number">3.1.</span> <span class="nav-text">需求：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现：-2"><span class="nav-number">3.2.</span> <span class="nav-text">实现：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试需求-part4"><span class="nav-number">4.</span> <span class="nav-text">测试需求-part4</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#需求：-3"><span class="nav-number">4.1.</span> <span class="nav-text">需求：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现：-3"><span class="nav-number">4.2.</span> <span class="nav-text">实现：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试需求-part5"><span class="nav-number">5.</span> <span class="nav-text">测试需求-part5</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#需求：-4"><span class="nav-number">5.1.</span> <span class="nav-text">需求：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#实现：-4"><span class="nav-number">5.2.</span> <span class="nav-text">实现：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">熊叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+&nbsp;&nbsp;|&nbsp;&nbsp;本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

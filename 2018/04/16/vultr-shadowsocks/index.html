@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+
+
+  <meta name="keywords" content="VPS," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="早年vultr、搬瓦工搭酸酸乳在江湖上如雷贯耳，甚是向往，但一直未碰见2.5刀的廉价vps，最近上班摸鱼发现vultr有活动（新用户赠送25刀），没忍住开了新账户充了10刀，随后发现有Newyork和Miami的2.5刀套餐，虽然不是最理想的机房，但胜在廉价，抱着试一试的态度购买后按照教程搭好梯子，效果意外的不错！此次过程记录如下： 安装BBRBBR 是 Google 提出的一种新型拥塞控制算法，">
+<meta name="keywords" content="VPS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vultr梯子记">
+<meta property="og:url" content="http://haoweisz.top/2018/04/16/vultr-shadowsocks/index.html">
+<meta property="og:site_name" content="bear&#39;s blog">
+<meta property="og:description" content="早年vultr、搬瓦工搭酸酸乳在江湖上如雷贯耳，甚是向往，但一直未碰见2.5刀的廉价vps，最近上班摸鱼发现vultr有活动（新用户赠送25刀），没忍住开了新账户充了10刀，随后发现有Newyork和Miami的2.5刀套餐，虽然不是最理想的机房，但胜在廉价，抱着试一试的态度购买后按照教程搭好梯子，效果意外的不错！此次过程记录如下： 安装BBRBBR 是 Google 提出的一种新型拥塞控制算法，">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-08T07:28:38.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Vultr梯子记">
+<meta name="twitter:description" content="早年vultr、搬瓦工搭酸酸乳在江湖上如雷贯耳，甚是向往，但一直未碰见2.5刀的廉价vps，最近上班摸鱼发现vultr有活动（新用户赠送25刀），没忍住开了新账户充了10刀，随后发现有Newyork和Miami的2.5刀套餐，虽然不是最理想的机房，但胜在廉价，抱着试一试的态度购买后按照教程搭好梯子，效果意外的不错！此次过程记录如下： 安装BBRBBR 是 Google 提出的一种新型拥塞控制算法，">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://haoweisz.top/2018/04/16/vultr-shadowsocks/"/>
+
+
+
+
+
+  <title>Vultr梯子记 | bear's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bear's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小熊变老熊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/04/16/vultr-shadowsocks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vultr梯子记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-16T14:14:44+08:00">
+                2018-04-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span id="busuanzi_container_page_pv">&nbsp;&nbsp;|&nbsp;&nbsp;阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>早年vultr、搬瓦工搭酸酸乳在江湖上如雷贯耳，甚是向往，但一直未碰见2.5刀的廉价vps，最近上班摸鱼发现vultr有活动（新用户赠送25刀），没忍住开了新账户充了10刀，随后发现有Newyork和Miami的2.5刀套餐，虽然不是最理想的机房，但胜在廉价，抱着试一试的态度购买后按照教程搭好梯子，效果意外的不错！此次过程记录如下：</p>
+<h3 id="安装BBR"><a href="#安装BBR" class="headerlink" title="安装BBR"></a>安装BBR</h3><p>BBR 是 Google 提出的一种新型拥塞控制算法，可以使 Linux 服务器显著地提高吞吐量和减少 TCP 连接的延迟。<br>BBR解决了两个问题：</p>
+<ul>
+<li>再有一定丢包率的网络链路上充分利用带宽。非常适合高延迟，高带宽的网络链路。</li>
+<li>降低网络链路上的buffer占用率，从而降低延迟。非常适合慢速接入网络的用户。<a id="more"></a>
+此次安装参考了一键安装脚本进行安装：</li>
+</ul>
+<ol>
+<li><p>使用root用户登陆，运行：</p>
+<pre><code>wget --no-check-certificate https://github.com/teddysun/across/raw/master/bbr.sh &amp;&amp; chmod +x bbr.sh &amp;&amp; ./bbr.sh
+</code></pre></li>
+<li><p>验证是否成功安装最新内核并开启 TCP BBR 运行：</p>
+<pre><code>sysctl net.ipv4.tcp_available_congestion_control
+</code></pre><p>返回值一般：<br><code>net.ipv4.tcp_available_congestion_control = bbr cubic reno</code> 说明BBR已完成安装。</p>
+<p>输入命令：</p>
+<pre><code>lsmod | grep bbr
+</code></pre><p>返回值有 tcp_bbr 模块即说明 BBR已启动。</p>
+</li>
+</ol>
+<hr>
+<h3 id="搭梯子"><a href="#搭梯子" class="headerlink" title="搭梯子"></a>搭梯子</h3><h4 id="Server"><a href="#Server" class="headerlink" title="Server"></a>Server</h4><ol>
+<li><p>使用root用户登陆，运行：</p>
+<pre><code>wget –no-check-certificate  https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks.sh
+</code></pre></li>
+<li><p>运行：</p>
+<pre><code>chmod +x shadowsocks.sh
+</code></pre></li>
+<li><p>运行：</p>
+<pre><code>./shadowsocks.sh 2&gt;&amp;1 | tee shadowsocks.log
+</code></pre><p>中间会提示你输入你的SS SERVER的账号，和端口。不输入就是默认。跑完命令后会出来你的SS客户端的信息。安装完成后，脚本提示如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Congratulations, shadowsocks install completed!</span><br><span class="line">Your Server IP:your_server_ip</span><br><span class="line">Your Server Port:your_server_port</span><br><span class="line">Your Password:your_password</span><br><span class="line">Your Local IP:127.0.0.1</span><br><span class="line">Your Local Port:1080</span><br><span class="line">Your Encryption Method:aes-256-cfb</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h4 id="Client"><a href="#Client" class="headerlink" title="Client"></a>Client</h4><ol>
+<li><p>Window-shadowsocks</p>
+<p>windows客户端更新4.0.9,项目地址：<a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">https://github.com/shadowsocks/shadowsocks-windows/releases</a> <a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">下载地址</a></p>
+</li>
+<li><p>Android<br>安卓的客户端可以用ShadowSOCKS（影梭）<a href="https://github.com/shadowsocks/shadowsocks-android/releases" target="_blank" rel="noopener">下载地址</a> 选择universal版即可。</p>
+</li>
+<li><p>IOS 略</p>
+</li>
+</ol>
+<hr>
+<h4 id="多用户及配置修改"><a href="#多用户及配置修改" class="headerlink" title="多用户及配置修改"></a>多用户及配置修改</h4><p>配置文件路径 /etc/shadowsocks.json<br>多用户配置例：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   “port_password”:&#123;</span><br><span class="line">        “<span class="number">8989</span>”:”password0″,</span><br><span class="line">        “<span class="number">9001</span>”:”password1″,</span><br><span class="line">        “<span class="number">9002</span>”:”password2″,</span><br><span class="line">        “<span class="number">9003</span>”:”password3″,</span><br><span class="line">        “<span class="number">9004</span>”:”password4″</span><br><span class="line">   &#125;,</span><br><span class="line">   “method”:”aes<span class="number">-256</span>-cfb”,</span><br><span class="line">   “timeout”:<span class="number">600</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p><strong>选择最快速度的节点机房</strong></p>
+<p>打开vultr节点列表，里面包含所有节点的测试IP及用于测试网络速度的下载文件<br><a href="https://www.vultr.com/faq/?ref=6879156#downloadspeedtests" target="_blank" rel="noopener">https://www.vultr.com/faq/?ref=6879156#downloadspeedtests</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/VPS/" rel="tag"># VPS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/27/python-pip-configuration/" rel="next" title="pip 使用阿里镜像">
+                <i class="fa fa-chevron-left"></i> pip 使用阿里镜像
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/26/linux-user-sudo/" rel="prev" title="Linux用户配置sudo权限">
+                Linux用户配置sudo权限 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/bear.jpg"
+                alt="熊叔" />
+            
+              <p class="site-author-name" itemprop="name">熊叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hw1426" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:haoweisz05@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.testclass.net/" title="测试教程网" target="_blank">测试教程网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.testpub.cn/" title="测试学习小组" target="_blank">测试学习小组</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装BBR"><span class="nav-number">1.</span> <span class="nav-text">安装BBR</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭梯子"><span class="nav-number">2.</span> <span class="nav-text">搭梯子</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Server"><span class="nav-number">2.1.</span> <span class="nav-text">Server</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Client"><span class="nav-number">2.2.</span> <span class="nav-text">Client</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多用户及配置修改"><span class="nav-number">2.3.</span> <span class="nav-text">多用户及配置修改</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">3.</span> <span class="nav-text">补充</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">熊叔</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+&nbsp;&nbsp;|&nbsp;&nbsp;本页点击 <span id="busuanzi_value_page_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
+&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
