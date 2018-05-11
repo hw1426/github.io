@@ -280,7 +280,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/11/jmeter-functions-2/" itemprop="url">jmeter_functions_2</a></h1>
+                <a class="post-title-link" href="/2018/05/11/jmeter-functions-2/" itemprop="url">jmeter函数-input篇</a></h1>
         
 
         <div class="post-meta">
@@ -364,6 +364,7 @@
 <li><p><strong>例子：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">COL1a $&#123;__CSVRead(random.txt,0)&#125;</span><br><span class="line">COL2a $&#123;__CSVRead(random.txt,1)&#125;$&#123;__CSVRead(random.txt,next)&#125;</span><br><span class="line">COL1b $&#123;__CSVRead(random.txt,0)&#125;</span><br><span class="line">COL2b $&#123;__CSVRead(random.txt,1)&#125;$&#123;__CSVRead(random.txt,next)&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>读取不方便建议用配置原件中的CSV Date Set Config代替使用</strong></p>
+<p><del>官方例子说明<code>__CSVRead</code>也可以读取txt文件，这和<code>__StringFromFile</code>有什么区别？</del></p>
 </li>
 </ul>
 <h4 id="函数：-XPath"><a href="#函数：-XPath" class="headerlink" title="函数：__XPath"></a>函数：<code>__XPath</code></h4><ul>

@@ -84,14 +84,14 @@
 <meta name="description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据  数据文件支持多格式文件（.dat , .txt , .csv）；  数据文件和脚本放在 同一文件夹下（没实现，待验证），绝对路径已验证。 PS.更正相对">
 <meta name="keywords" content="Jmeter">
 <meta property="og:type" content="article">
-<meta property="og:title" content="jmeter_functions_2">
+<meta property="og:title" content="jmeter函数-input篇">
 <meta property="og:url" content="http://haoweisz.top/2018/05/11/jmeter-functions-2/index.html">
 <meta property="og:site_name" content="bear&#39;s blog">
 <meta property="og:description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据  数据文件支持多格式文件（.dat , .txt , .csv）；  数据文件和脚本放在 同一文件夹下（没实现，待验证），绝对路径已验证。 PS.更正相对">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T07:09:09.603Z">
+<meta property="og:updated_time" content="2018-05-11T07:13:45.716Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="jmeter_functions_2">
+<meta name="twitter:title" content="jmeter函数-input篇">
 <meta name="twitter:description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据  数据文件支持多格式文件（.dat , .txt , .csv）；  数据文件和脚本放在 同一文件夹下（没实现，待验证），绝对路径已验证。 PS.更正相对">
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>jmeter_functions_2 | bear's blog</title>
+  <title>jmeter函数-input篇 | bear's blog</title>
   
 
 
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">jmeter_functions_2</h1>
+          <h1 class="post-title" itemprop="name headline">jmeter函数-input篇</h1>
         
 
         <div class="post-meta">
@@ -366,6 +366,7 @@
 <li><p><strong>例子：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">COL1a $&#123;__CSVRead(random.txt,0)&#125;</span><br><span class="line">COL2a $&#123;__CSVRead(random.txt,1)&#125;$&#123;__CSVRead(random.txt,next)&#125;</span><br><span class="line">COL1b $&#123;__CSVRead(random.txt,0)&#125;</span><br><span class="line">COL2b $&#123;__CSVRead(random.txt,1)&#125;$&#123;__CSVRead(random.txt,next)&#125;</span><br></pre></td></tr></table></figure>
 <p><strong>读取不方便建议用配置原件中的CSV Date Set Config代替使用</strong></p>
+<p><del>官方例子说明<code>__CSVRead</code>也可以读取txt文件，这和<code>__StringFromFile</code>有什么区别？</del></p>
 </li>
 </ul>
 <h4 id="函数：-XPath"><a href="#函数：-XPath" class="headerlink" title="函数：__XPath"></a>函数：<code>__XPath</code></h4><ul>
