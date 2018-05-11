@@ -261,6 +261,179 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/05/11/jmeter-functions-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/11/jmeter-functions-3/" itemprop="url">jmeter-函数String篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T15:19:33+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>本章节函数类型为String</strong></p>
+<h4 id="函数：-regexFunction"><a href="#函数：-regexFunction" class="headerlink" title="函数：__regexFunction"></a>函数：<code>__regexFunction</code></h4><ul>
+<li><strong>作用：</strong> 正则表达式解析</li>
+</ul>
+<h4 id="函数：-escapeOroRegexpChars"><a href="#函数：-escapeOroRegexpChars" class="headerlink" title="函数：__escapeOroRegexpChars"></a>函数：<code>__escapeOroRegexpChars</code></h4><ul>
+<li><strong>作用：</strong> 正则表达式中的保留字符转译</li>
+</ul>
+<h4 id="函数：-char"><a href="#函数：-char" class="headerlink" title="函数：__char"></a>函数：<code>__char</code></h4><ul>
+<li><strong>作用：</strong> unicode编码转unicode字符串</li>
+<li><strong>例子:</strong> TODO</li>
+</ul>
+<h4 id="函数：-unescape"><a href="#函数：-unescape" class="headerlink" title="函数：__unescape"></a>函数：<code>__unescape</code></h4><ul>
+<li><strong>作用：</strong> 调用Java反转译，字符串转译编码</li>
+<li><strong>例子：</strong> TODO</li>
+</ul>
+<h4 id="函数：-unescapeHtml"><a href="#函数：-unescapeHtml" class="headerlink" title="函数：__unescapeHtml"></a>函数：<code>__unescapeHtml</code></h4><ul>
+<li><p><strong>原文介绍：</strong></p>
+<blockquote>
+<p>Function to unescape a string containing HTML entity escapes to a string containing the actual Unicode characters corresponding to the escapes.  </p>
+</blockquote>
+<p>富HTML转译HTML ==&gt; 引申XXS攻击</p>
+</li>
+<li><p><strong>例子：</strong><code>A=&amp;lt;script&amp;gt;xxxxxxxx&amp;lt;/script&amp;gt;</code> 转译为<code>&lt;script&gt;xxxxxxxx&lt;/script&gt;</code></p>
+<p> <code>{__unescapeHtml(A)}</code> will return <code>&lt;script&gt;xxxxxxxx&lt;/script&gt;</code></p>
+</li>
+</ul>
+<h4 id="函数：-escapeHtml"><a href="#函数：-escapeHtml" class="headerlink" title="函数：__escapeHtml"></a>函数：<code>__escapeHtml</code></h4><ul>
+<li><strong>作用</strong> 和<code>__unescapeHtml</code> 相反</li>
+</ul>
+<h4 id="函数：-escapeXml"><a href="#函数：-escapeXml" class="headerlink" title="函数：__escapeXml"></a>函数：<code>__escapeXml</code></h4><ul>
+<li><strong>作用:</strong> 与<code>__escapeHtml</code> 一样，作用于XML</li>
+<li><p><strong>原文：</strong></p>
+<blockquote>
+<p>Function which escapes the characters in a String using XML 1.0 entities.</p>
+</blockquote>
+</li>
+<li><p><strong>例子：</strong> <code>${__escapeXml(&quot;bread&quot; &amp; &#39;butter&#39;)}</code><br>returns:  <code>&amp;quot;bread&amp;quot; &amp;amp; &amp;apos;butter&amp;apos;</code></p>
+</li>
+</ul>
+<h4 id="函数：-urldecode"><a href="#函数：-urldecode" class="headerlink" title="函数：__urldecode"></a>函数：<code>__urldecode</code></h4><ul>
+<li><strong>作用：</strong> 转译过的字符串，反转译</li>
+<li><strong>例子1：</strong><br><code>${__urldecode(Word+%22school%22+is+%22%C3%A9cole%22+in+french)}</code><br>returns:  <code>Word &quot;school&quot; is &quot;école&quot; in french</code></li>
+<li><strong>例子2：</strong><br><code>${__urldecode(%E5%85%A8%E5%9B%BD%E4%BA%BA%E6%B0%91%E5%96%9C%E8%BF%8E%E6%B2%B9%E4%BB%B7%E4%B8%8A%E6%B6%A8)}</code><br>returns: 全国人民喜迎油价上涨</li>
+</ul>
+<h4 id="函数：-urlencode"><a href="#函数：-urlencode" class="headerlink" title="函数：__urlencode"></a>函数：<code>__urlencode</code></h4><ul>
+<li><strong>作用：</strong> 与__urldecode相反</li>
+<li><strong>例子：</strong><br><code>${__urlencode(全国人民喜迎油价上涨)}</code><br>returns: <code>%E5%85%A8%E5%9B%BD%E4%BA%BA%E6%B0%91%E5%96%9C%E8%BF%8E%E6%B2%B9%E4%BB%B7%E4%B8%8A%E6%B6%A8</code></li>
+</ul>
+<h4 id="函数：-TestPlanName"><a href="#函数：-TestPlanName" class="headerlink" title="函数：__TestPlanName"></a>函数：<code>__TestPlanName</code></h4><ul>
+<li><strong>作用：</strong> 返回当前测试计划的名称</li>
+<li><strong>场景案例：</strong><br>jmeter批处理脚本一次执行多个testplan,可以用此函数把每个plan的名字打印在log。 <del>（强行找场景，也许有用。一般用于调试）</del></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/05/11/jmeter-functions-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -574,142 +747,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/04/26/linux-user-sudo/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="熊叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/bear.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="bear's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/04/26/linux-user-sudo/" itemprop="url">Linux用户配置sudo权限</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T11:07:09+08:00">
-                2018-04-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>在套路云上折腾docker中发现本地用户没有sudo权限（貌似本地虚拟机没有出现这个问题），度娘后总结如下：</p>
-<p><strong>sudo的工作过程：</strong></p>
-<ul>
-<li>当用户执行sudo，系统优先寻找/etc/sudoers文件（不是sudoers.d文件夹）,判断用户是否有执行sudo的权限；<br>未有权限报错：<code>xxx is not in the sudoers file.This incident will be reported</code></li>
-<li>确认用户（用户组）具有可执行sudo权限后，让用户输入密码（或免密码）执行。</li>
-</ul>
-<p><strong>解决过程如下：</strong><br>root用户登录,编辑sudoers文件<br><code>vim /etc/sudoers</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># This file MUST be edited with the &apos;visudo&apos; command as root.</span><br><span class="line">#</span><br><span class="line"># Please consider adding local content in /etc/sudoers.d/ instead of</span><br><span class="line"># directly modifying this file.</span><br><span class="line">#</span><br><span class="line"># See the man page for details on how to write a sudoers file.</span><br><span class="line">#</span><br><span class="line">Defaults        env_reset</span><br><span class="line">Defaults        mail_badpass</span><br><span class="line">Defaults        secure_path=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin&quot;</span><br><span class="line"></span><br><span class="line"># Host alias specification</span><br><span class="line"></span><br><span class="line"># User alias specification</span><br><span class="line"></span><br><span class="line"># Cmnd alias specification</span><br><span class="line"></span><br><span class="line"># User privilege specification</span><br><span class="line">root    ALL=(ALL:ALL) ALL</span><br><span class="line"># Members of the admin group may gain root privileges</span><br><span class="line">%admin ALL=(ALL) ALL</span><br><span class="line"></span><br><span class="line"># Allow members of group sudo to execute any command</span><br><span class="line">%sudo   ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line"># See sudoers(5) for more information on &quot;#include&quot; directives:</span><br><span class="line"></span><br><span class="line">#includedir /etc/sudoers.d</span><br></pre></td></tr></table></figure>
-<p>在# User privilege specification  下插入（可选）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">youuser             ALL=(ALL:ALL)                ALL</span><br><span class="line">#%youuser           ALL=(ALL:ALL)                ALL</span><br><span class="line">#youuser            ALL=(ALL:ALL)                NOPASSWD: ALL</span><br><span class="line">#%youuser           ALL=(ALL:ALL)                NOPASSWD: ALL</span><br></pre></td></tr></table></figure></p>
-<p>第一行:允许用户youuser执行sudo命令(需要输入密码).</p>
-<p>第二行:允许用户组youuser里面的用户执行sudo命令(需要输入密码).</p>
-<p>第三行:允许用户youuser执行sudo命令,并且在执行的时候不输入密码.</p>
-<p>第四行:允许用户组youuser里面的用户执行sudo命令,并且在执行的时候不输入密码。</p>
-<p><code>%</code>表示用户组</p>
-<p>这样普通用户有sudo权限</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -764,7 +801,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
