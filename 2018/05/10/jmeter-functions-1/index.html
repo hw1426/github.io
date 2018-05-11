@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="bear&#39;s blog">
 <meta property="og:description" content="本章节为information函数类型，多用于打印log调试用。 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数：__samplerName 作用： 返回当前samp">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T06:38:08.532Z">
+<meta property="og:updated_time" content="2018-05-11T07:46:09.856Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jmeter函数-information篇">
 <meta name="twitter:description" content="本章节为information函数类型，多用于打印log调试用。 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数：__samplerName 作用： 返回当前samp">
@@ -344,9 +344,8 @@
 <h4 id="函数：-samplerName"><a href="#函数：-samplerName" class="headerlink" title="函数：__samplerName"></a>函数：<code>__samplerName</code></h4><ul>
 <li><strong>作用：</strong> 返回当前sampler的名称</li>
 <li><strong>例子：</strong> <code>${__samplerName()}</code></li>
-<li><strong>场景案例：</strong> 也是用于log中调试</li>
-</ul>
-<h4 id="函数：-macheineIP"><a href="#函数：-macheineIP" class="headerlink" title="函数：__macheineIP"></a>函数：<code>__macheineIP</code></h4><ul>
+<li><strong>场景案例：</strong> 也是用于log中调试<a id="more"></a>
+<h4 id="函数：-macheineIP"><a href="#函数：-macheineIP" class="headerlink" title="函数：__macheineIP"></a>函数：<code>__macheineIP</code></h4></li>
 <li><strong>作用：</strong> 函数返回本地IP地址</li>
 <li><strong>例子：</strong> <code>${__machineIP(####  )}</code> 和<code>${__machineIP}</code> 都返回- 本机IP</li>
 <li><strong>场景案例：</strong> 1、还是log-    2、分布式</li>
