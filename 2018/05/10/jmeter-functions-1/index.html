@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="本章节为information函数类型，多用于打印log调试用。  函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;…………… 在sampler中的parameters录入user${__threadNum} input 适用场景在log中调试用  函数：__samplerName 作用： 返回当前s">
+<meta name="description" content="本章节为information函数类型，多用于打印log调试用。 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数：__samplerName 作用： 返回当前samp">
 <meta name="keywords" content="Jmeter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jmeter函数-information篇">
 <meta property="og:url" content="http://haoweisz.top/2018/05/10/jmeter-functions-1/index.html">
 <meta property="og:site_name" content="bear&#39;s blog">
-<meta property="og:description" content="本章节为information函数类型，多用于打印log调试用。  函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;…………… 在sampler中的parameters录入user${__threadNum} input 适用场景在log中调试用  函数：__samplerName 作用： 返回当前s">
+<meta property="og:description" content="本章节为information函数类型，多用于打印log调试用。 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数：__samplerName 作用： 返回当前samp">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T06:21:28.992Z">
+<meta property="og:updated_time" content="2018-05-11T06:38:08.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jmeter函数-information篇">
-<meta name="twitter:description" content="本章节为information函数类型，多用于打印log调试用。  函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;…………… 在sampler中的parameters录入user${__threadNum} input 适用场景在log中调试用  函数：__samplerName 作用： 返回当前s">
+<meta name="twitter:description" content="本章节为information函数类型，多用于打印log调试用。 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数：__samplerName 作用： 返回当前samp">
 
 
 
@@ -337,49 +337,50 @@
 
       
         <p><strong>本章节为information函数类型，多用于打印log调试用。</strong></p>
-<ol>
-<li><p>函数：<code>__threadNum</code></p>
-<p><strong>作用：</strong> 获取当前线程（用户）编号</p>
-<p><strong>场景案例：</strong> 线程1录入user1 input ;线程2录入user2 input;……………</p>
-<p>在sampler中的parameters录入<code>user${__threadNum} input</code></p>
-<p>适用场景在log中调试用</p>
+<h4 id="函数：-threadNum"><a href="#函数：-threadNum" class="headerlink" title="函数：__threadNum"></a>函数：<code>__threadNum</code></h4><ul>
+<li><strong>作用：</strong> 获取当前线程（用户）编号</li>
+<li><strong>场景案例：</strong> 线程1录入user1 input ;线程2录入user2 input;……………<br>在sampler中的parameters录入<code>user${__threadNum} input</code><br>适用场景在log中调试用</li>
+</ul>
+<h4 id="函数：-samplerName"><a href="#函数：-samplerName" class="headerlink" title="函数：__samplerName"></a>函数：<code>__samplerName</code></h4><ul>
+<li><strong>作用：</strong> 返回当前sampler的名称</li>
+<li><strong>例子：</strong> <code>${__samplerName()}</code></li>
+<li><strong>场景案例：</strong> 也是用于log中调试</li>
+</ul>
+<h4 id="函数：-macheineIP"><a href="#函数：-macheineIP" class="headerlink" title="函数：__macheineIP"></a>函数：<code>__macheineIP</code></h4><ul>
+<li><strong>作用：</strong> 函数返回本地IP地址</li>
+<li><strong>例子：</strong> <code>${__machineIP(####  )}</code> 和<code>${__machineIP}</code> 都返回- 本机IP</li>
+<li><strong>场景案例：</strong> 1、还是log-    2、分布式</li>
+</ul>
+<h4 id="函数：-machineName"><a href="#函数：-machineName" class="headerlink" title="函数：__machineName"></a>函数：<code>__machineName</code></h4><ul>
+<li><strong>作用：</strong> 函数返回本地机器的名称</li>
+<li><strong>例子：</strong> <code>${__machineName()}</code>和<code>${__machineName}</code> 都返回hostname</li>
+<li><strong>场景案例：</strong> 还是log</li>
+</ul>
+<h4 id="函数：-time"><a href="#函数：-time" class="headerlink" title="函数：__time"></a>函数：<code>__time</code></h4><ul>
+<li><strong>作用：</strong> 返回各种格式的当前时间</li>
+<li><p><strong>格式如下：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">YMD = yyyyMMdd</span><br><span class="line">HMS = HHmmss</span><br><span class="line">YMDHMS = yyyyMMdd-HHmmss</span><br><span class="line">USER1 = whatever is in the JMeter property time.USER1</span><br><span class="line">USER2 = whatever is in the JMeter property time.USER2</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>函数：<code>__samplerName</code></p>
-<p><strong>作用：</strong> 返回当前sampler的名称</p>
-<p><strong>例子：</strong> <code>${__samplerName()}</code></p>
-<p><strong>场景案例：</strong> 也是用于log中调试</p>
-</li>
-</ol>
-<ul>
-<li><p>函数：<code>__macheineIP</code></p>
-<p><strong>作用：</strong> 函数返回本地IP地址</p>
-<p><strong>例子：</strong> <code>${__machineIP()}</code> 和<code>${__machineIP}</code> 都返回本机IP</p>
-<p><strong>场景案例：</strong> 1、还是log    2、分布式</p>
-</li>
-<li><p>函数：<code>__machineName</code><br><strong>作用：</strong> 函数返回本地机器的名称</p>
-<p><strong>例子：</strong> <code>${__machineName()}</code> 和<code>${__machineName}</code> 都返回hostname</p>
-<p><strong>场景案例：</strong> 还是log</p>
-</li>
-<li><p>函数：<code>__time</code><br><strong>作用：</strong> 返回各种格式的当前时间</p>
-<p><strong>格式如下：</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">YMD = yyyyMMdd</span><br><span class="line">HMS = HHmmss</span><br><span class="line">YMDHMS = yyyyMMdd-HHmmss</span><br><span class="line">USER1 = whatever is in the JMeter property time.USER1</span><br><span class="line">USER2 = whatever is in the JMeter property time.USER2</span><br></pre></td></tr></table></figure>
-<p><strong>例子：</strong></p>
+<li><p><strong>例子：</strong></p>
 <p><code>${__time(dd/MM/yyyy,)}</code>return 21/01/2018</p>
 <p><code>${__time(YMD,)}</code> return20180121</p>
 <p><code>${__time()}</code> return 当前时间戳</p>
 <p>还有其他表达方式:</p>
 <p><code>${__time(EEE\, dd MMM yyyy)}</code>return Thu,10 May 2018</p>
 </li>
-<li><p>函数：<code>__timeShift</code></p>
-<p> TODO</p>
+</ul>
+<h4 id="函数：-timeShift"><a href="#函数：-timeShift" class="headerlink" title="函数：__timeShift"></a>函数：<code>__timeShift</code></h4><ul>
+<li>TODO</li>
+</ul>
+<h4 id="函数：-log"><a href="#函数：-log" class="headerlink" title="函数：__log"></a>函数：<code>__log</code></h4><ul>
+<li><p><strong>作用：</strong> 在log中打印</p>
 </li>
-<li><p>函数：<code>__log</code></p>
-<p>作用：在log中打印</p>
-<p>场景实现：<br>在前置、后置处理器及线程组中可以打印log，输出在log和view Results tree</p>
+<li><p><strong>场景实现：</strong><br>在前置、后置处理器及线程组中可以打印log，输出在log和view Results tree</p>
 </li>
-<li><p>函数：<code>__logn</code></p>
-<p>作用：和log相似，但只输出在log里，log中可以持久化，viewResults Tree 运行线程组会覆盖</p>
-</li>
+<li><strong>log和view Results tree的区别</strong><br>log中可以持久化，viewResults Tree 运行线程组会覆盖当前信息</li>
+</ul>
+<h4 id="函数：-logn"><a href="#函数：-logn" class="headerlink" title="函数：__logn"></a>函数：<code>__logn</code></h4><ul>
+<li><strong>作用：</strong> 和log相似，但只输出在log里</li>
 </ul>
 
       
@@ -471,8 +472,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -565,6 +575,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-threadNum"><span class="nav-number">1.</span> <span class="nav-text">函数：__threadNum</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-samplerName"><span class="nav-number">2.</span> <span class="nav-text">函数：__samplerName</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-macheineIP"><span class="nav-number">3.</span> <span class="nav-text">函数：__macheineIP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-machineName"><span class="nav-number">4.</span> <span class="nav-text">函数：__machineName</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-time"><span class="nav-number">5.</span> <span class="nav-text">函数：__time</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-timeShift"><span class="nav-number">6.</span> <span class="nav-text">函数：__timeShift</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-log"><span class="nav-number">7.</span> <span class="nav-text">函数：__log</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-logn"><span class="nav-number">8.</span> <span class="nav-text">函数：__logn</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
