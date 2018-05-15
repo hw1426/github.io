@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="本章节为information函数类型，多用于打印log调试用。 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数：__samplerName 作用： 返回当前samp">
+<meta name="description" content="本章节为information函数类型，多用于打印log调试用。 PS.补充官方Parameters和Examples 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数">
 <meta name="keywords" content="Jmeter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jmeter函数-information篇">
 <meta property="og:url" content="http://haoweisz.top/2018/05/10/jmeter-functions-1/index.html">
 <meta property="og:site_name" content="bear&#39;s blog">
-<meta property="og:description" content="本章节为information函数类型，多用于打印log调试用。 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数：__samplerName 作用： 返回当前samp">
+<meta property="og:description" content="本章节为information函数类型，多用于打印log调试用。 PS.补充官方Parameters和Examples 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T08:31:07.898Z">
+<meta property="og:updated_time" content="2018-05-15T07:55:04.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jmeter函数-information篇">
-<meta name="twitter:description" content="本章节为information函数类型，多用于打印log调试用。 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数：__samplerName 作用： 返回当前samp">
+<meta name="twitter:description" content="本章节为information函数类型，多用于打印log调试用。 PS.补充官方Parameters和Examples 函数：__threadNum 作用： 获取当前线程（用户）编号 场景案例： 线程1录入user1 input ;线程2录入user2 input;……………在sampler中的parameters录入user${__threadNum} input适用场景在log中调试用  函数">
 
 
 
@@ -370,27 +370,109 @@
 
       
         <p><strong>本章节为information函数类型，多用于打印log调试用。</strong></p>
+<p>PS.补充官方Parameters和Examples</p>
 <h4 id="函数：-threadNum"><a href="#函数：-threadNum" class="headerlink" title="函数：__threadNum"></a>函数：<code>__threadNum</code></h4><ul>
 <li><strong>作用：</strong> 获取当前线程（用户）编号</li>
 <li><strong>场景案例：</strong> 线程1录入user1 input ;线程2录入user2 input;……………<br>在sampler中的parameters录入<code>user${__threadNum} input</code><br>适用场景在log中调试用</li>
 </ul>
 <h4 id="函数：-samplerName"><a href="#函数：-samplerName" class="headerlink" title="函数：__samplerName"></a>函数：<code>__samplerName</code></h4><ul>
 <li><strong>作用：</strong> 返回当前sampler的名称</li>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variable Name</td>
+<td>A reference name <code>- refName -</code> for reusing the value created by this function. Stored values are of the form <code>${refName}</code>.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><strong>例子：</strong> <code>${__samplerName()}</code></li>
 <li><strong>场景案例：</strong> 也是用于log中调试<a id="more"></a>
 <h4 id="函数：-macheineIP"><a href="#函数：-macheineIP" class="headerlink" title="函数：__macheineIP"></a>函数：<code>__macheineIP</code></h4></li>
 <li><strong>作用：</strong> 函数返回本地IP地址</li>
-<li><strong>例子：</strong> <code>${__machineIP(####  )}</code> 和<code>${__machineIP}</code> 都返回- 本机IP</li>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variable Name</td>
+<td>A reference name for reusing the value computed by this function.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>例子：</strong> <code>${__machineIP(####)}</code> 和<code>${__machineIP}</code> 都返回- 本机IP</li>
 <li><strong>场景案例：</strong> 1、还是log-    2、分布式</li>
 </ul>
 <h4 id="函数：-machineName"><a href="#函数：-machineName" class="headerlink" title="函数：__machineName"></a>函数：<code>__machineName</code></h4><ul>
 <li><strong>作用：</strong> 函数返回本地机器的名称</li>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variable Name</td>
+<td>A reference name for reusing the value computed by this function.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><strong>例子：</strong> <code>${__machineName()}</code>和<code>${__machineName}</code> 都返回hostname</li>
 <li><strong>场景案例：</strong> 还是log</li>
 </ul>
 <h4 id="函数：-time"><a href="#函数：-time" class="headerlink" title="函数：__time"></a>函数：<code>__time</code></h4><ul>
 <li><strong>作用：</strong> 返回各种格式的当前时间</li>
-<li><p><strong>格式如下：</strong></p>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Format</td>
+<td>The format to be passed to SimpleDateFormat. The function supports various shorthand aliases, see below. If omitted, the function returns the current time in milliseconds since the epoch.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Name of variable</td>
+<td>The name of the variable to set.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><strong>简写格式如下：</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">YMD = yyyyMMdd</span><br><span class="line">HMS = HHmmss</span><br><span class="line">YMDHMS = yyyyMMdd-HHmmss</span><br><span class="line">USER1 = whatever is in the JMeter property time.USER1</span><br><span class="line">USER2 = whatever is in the JMeter property time.USER2</span><br></pre></td></tr></table></figure>
 </li>
 <li><p><strong>例子：</strong></p>
@@ -402,17 +484,124 @@
 </li>
 </ul>
 <h4 id="函数：-timeShift"><a href="#函数：-timeShift" class="headerlink" title="函数：__timeShift"></a>函数：<code>__timeShift</code></h4><ul>
-<li>TODO</li>
+<li><strong>作用：</strong> timeShift函数返回指定格式的日期，并添加指定的秒数，分钟数，小时数，天数或月数</li>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Format</td>
+<td>The format to be passed to DateTimeFormatter. See DateTimeFormatter If omitted, the function uses milliseconds since epoch format.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Date to shift</td>
+<td>Indicate the date in the format set by the parameter ‘Format’ to shift If omitted, the date is set to now</td>
+<td>No</td>
+</tr>
+<tr>
+<td>value to shift</td>
+<td>Indicate the specified amount of seconds, minutes, hours or days to shift according to a textual representation of a duration such as PnDTnHnMn.nS. See <a href="https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#parse-java.lang.CharSequence-" target="_blank" rel="noopener">https://docs.oracle.com/javase/8/docs/api/java/time/Duration.html#parse-java.lang.CharSequence-</a></td>
+<td>No</td>
+</tr>
+<tr>
+<td>Locale to use for format</td>
+<td>The string format of a locale. The language code must be lowercase. The country code must be uppercase. The separator must be an underscore. ex: en_EN See <a href="http://www.oracle.com/technetwork/java/javase/javase7locales-334809.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/javase7locales-334809.html</a> If omitted, by default the function use the ApacheJMeter locale one.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Name of variable</td>
+<td>The name of the variable to set.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>例子：</strong><ul>
+<li><code>${__timeShift(dd/MM/yyyy,21/01/2018,P2D,,)}</code> 返回23/01/2018</li>
+<li><code>${__timeShift(dd MMMM yyyy,21 février 2018,P2D,fr_FR,)}</code> 返回<code>23 février 2018</code></li>
+</ul>
+</li>
 </ul>
 <h4 id="函数：-log"><a href="#函数：-log" class="headerlink" title="函数：__log"></a>函数：<code>__log</code></h4><ul>
-<li><p><strong>作用：</strong> 在log中打印</p>
-</li>
-<li><p><strong>场景实现：</strong><br>在前置、后置处理器及线程组中可以打印log，输出在log和view Results tree</p>
-</li>
+<li><strong>作用：</strong> 在log中打印</li>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String to be logged</td>
+<td>A string</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Log Level</td>
+<td>OUT, ERR, DEBUG, INFO (default), WARN or ERROR</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Throwable text</td>
+<td>If non-empty, creates a Throwable to pass to the logger</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Comment</td>
+<td>If present, it is displayed in the string. Useful for identifying what is being logged.</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>OUT和ERR日志级别名称分别用于将输出指向System.out和System.err。 在这种情况下，输出总是被打印 - 它不依赖于当前的日志设置。</p>
+<ul>
+<li><strong>场景实现：</strong><br>在前置、后置处理器及线程组中可以打印log，输出在log和view Results tree</li>
 <li><strong>log和view Results tree的区别</strong><br>log中可以持久化，viewResults Tree 运行线程组会覆盖当前信息</li>
 </ul>
 <h4 id="函数：-logn"><a href="#函数：-logn" class="headerlink" title="函数：__logn"></a>函数：<code>__logn</code></h4><ul>
-<li><strong>作用：</strong> 和log相似，但只输出在log里</li>
+<li><strong>作用：</strong> 原意：logn函数记录一条消息，并返回空字符串（和log相似，但只输出在log里）</li>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>String to be logged</td>
+<td>A string</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Log Level</td>
+<td>OUT, ERR, DEBUG, INFO (default), WARN or ERROR</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Throwable text</td>
+<td>If non-empty, creates a Throwable to pass to the logger</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>例子：</strong><br><code>${__logn(VAR1=${VAR1},OUT)}</code>将变量的值写入控制台窗口</li>
 </ul>
 
       

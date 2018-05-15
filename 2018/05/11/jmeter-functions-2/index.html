@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据  数据文件支持多格式文件（.dat , .txt , .csv）；  数据文件和脚本放在 同一文件夹下（没实现，待验证），绝对路径已验证。 PS.更正相对">
+<meta name="description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据 详细解释： StringFromFile函数可用于从文本文件中读取字符串。 这对于运行需要大量可变数据的测试非常有用。 例如，在测试银行应用程序时，可能需">
 <meta name="keywords" content="Jmeter">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jmeter函数-input篇">
 <meta property="og:url" content="http://haoweisz.top/2018/05/11/jmeter-functions-2/index.html">
 <meta property="og:site_name" content="bear&#39;s blog">
-<meta property="og:description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据  数据文件支持多格式文件（.dat , .txt , .csv）；  数据文件和脚本放在 同一文件夹下（没实现，待验证），绝对路径已验证。 PS.更正相对">
+<meta property="og:description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据 详细解释： StringFromFile函数可用于从文本文件中读取字符串。 这对于运行需要大量可变数据的测试非常有用。 例如，在测试银行应用程序时，可能需">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-11T08:31:03.437Z">
+<meta property="og:updated_time" content="2018-05-15T08:14:42.857Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="jmeter函数-input篇">
-<meta name="twitter:description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据  数据文件支持多格式文件（.dat , .txt , .csv）；  数据文件和脚本放在 同一文件夹下（没实现，待验证），绝对路径已验证。 PS.更正相对">
+<meta name="twitter:description" content="本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 （文件常放在/bin目录下？） 函数：__StringFromFile 作用： Read a line from a file 文件中读取一行数据 详细解释： StringFromFile函数可用于从文本文件中读取字符串。 这对于运行需要大量可变数据的测试非常有用。 例如，在测试银行应用程序时，可能需">
 
 
 
@@ -371,17 +371,58 @@
       
         <p><strong>本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 <del>（文件常放在/bin目录下？）</del></strong></p>
 <h4 id="函数：-StringFromFile"><a href="#函数：-StringFromFile" class="headerlink" title="函数：__StringFromFile"></a>函数：<code>__StringFromFile</code></h4><ul>
-<li><p><strong>作用：</strong> Read a line from a file 文件中读取一行数据</p>
-<ol>
-<li><p>数据文件支持多格式文件（.dat , .txt , .csv）；</p>
+<li><strong>作用：</strong> Read a line from a file 文件中读取一行数据</li>
+<li><p><strong>详细解释：</strong> StringFromFile函数可用于从文本文件中读取字符串。 这对于运行需要大量可变数据的测试非常有用。</p>
+<p>例如，在测试银行应用程序时，可能需要100或1000个不同的帐号。另请参阅可能更易于使用的CSV数据集配置测试元素。 但是，那目前不支持多个输入文件。每次调用它时，都会从文件中读取下一行。 所有的线程共享同一个实例，所以不同的线程会得到不同的线。 当到达文件末尾时，除非达到最大循环次数，否则将从头开始重新读取。</p>
+<p>如果在测试脚本中有多个对该函数的引用，则每个文件都将独立打开该文件，即使文件名相同。 [如果该值要在其他地方再次使用，请为每个函数调用使用不同的变量名称。]</p>
+<blockquote>
+<p>函数实例在线程之间共享，并且由任何需要下一行输入的线程打开（重新）打开文件，因此使用threadNumber作为文件名的一部分会导致不可预知的行为。</p>
+</blockquote>
 </li>
+<li><p><strong>特点：</strong></p>
+<ol>
+<li>数据文件支持多格式文件（.dat , .txt , .csv）；</li>
 <li><p>数据文件和脚本放在 <del>同一文件夹下（没实现，待验证）</del>，绝对路径已验证。</p>
 <p>PS.更正相对路径已验证，数据文件应放在jmeter/bin路径下</p>
 <a id="more"></a></li>
 </ol>
 </li>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File Name</td>
+<td>Path to the file name. (The path can be relative to the JMeter launch directory) If using optional sequence numbers, the path name should be suitable for passing to DecimalFormat. See below for examples.</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Variable Name</td>
+<td>A reference name - refName - for reusing the value created by this function. Stored values are of the form ${refName}. Defaults to “StringFromFile_”.</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Start sequence number</td>
+<td>Initial Sequence number (if omitted, the End sequence number is treated as a loop count)</td>
+<td>No</td>
+</tr>
+<tr>
+<td>End sequence number</td>
+<td>Final sequence number (if omitted, sequence numbers can increase without limit)</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<ul>
 <li><p><strong>例子：</strong> 读取D盘下test.txt文件（一行）<br>函数表达为：<code>${__StringFromFile(D:\test.txt,,,)}</code></p>
-<p>注意函数中有三个可选参数（Variable Name、Start sequence number、End sequence number），不选参数也要加<code>，</code></p>
+<p>注意函数中有三个可选参数（Variable Name、Start sequence number、End sequence number），不选参数也要加<code>,</code></p>
 <p>PS.乙醇没有讲好坑啊！  给函数助手点赞，可以对不熟悉的函数调试</p>
 </li>
 </ul>
