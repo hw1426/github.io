@@ -70,7 +70,7 @@
 
 
 
-  <meta name="keywords" content="Jmeter," />
+  <meta name="keywords" content="pip," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="本章节函数类型为String 函数：__regexFunction 作用： 正则表达式解析  函数：__escapeOroRegexpChars 作用： 正则表达式中的保留字符转译  函数：__char 作用： unicode编码转unicode字符串 例子: TODO">
-<meta name="keywords" content="Jmeter">
+<meta name="description" content="Ubuntu环境下pip3升级10.x后再运行pip3后报错。 运行结果如下：12345678910111213root@TIM:~# pip3 install --upgrade pipCollecting pip  Downloading http://mirrors.aliyun.com/pypi/packages/0f/74/ecd13431bcc456ed390b44c8a6e917c1">
+<meta name="keywords" content="pip">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jmeter-函数String篇">
-<meta property="og:url" content="http://haoweisz.top/2018/05/11/jmeter-functions-3/index.html">
+<meta property="og:title" content="Python pip3 - cannot import name &#39;main&#39; error">
+<meta property="og:url" content="http://haoweisz.top/2018/05/18/Python-pip3-cannot-import-name-main-error-after-upgrading-pip/index.html">
 <meta property="og:site_name" content="bear&#39;s blog">
-<meta property="og:description" content="本章节函数类型为String 函数：__regexFunction 作用： 正则表达式解析  函数：__escapeOroRegexpChars 作用： 正则表达式中的保留字符转译  函数：__char 作用： unicode编码转unicode字符串 例子: TODO">
+<meta property="og:description" content="Ubuntu环境下pip3升级10.x后再运行pip3后报错。 运行结果如下：12345678910111213root@TIM:~# pip3 install --upgrade pipCollecting pip  Downloading http://mirrors.aliyun.com/pypi/packages/0f/74/ecd13431bcc456ed390b44c8a6e917c1">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-16T03:52:48.476Z">
+<meta property="og:updated_time" content="2018-05-18T08:16:22.288Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jmeter-函数String篇">
-<meta name="twitter:description" content="本章节函数类型为String 函数：__regexFunction 作用： 正则表达式解析  函数：__escapeOroRegexpChars 作用： 正则表达式中的保留字符转译  函数：__char 作用： unicode编码转unicode字符串 例子: TODO">
+<meta name="twitter:title" content="Python pip3 - cannot import name &#39;main&#39; error">
+<meta name="twitter:description" content="Ubuntu环境下pip3升级10.x后再运行pip3后报错。 运行结果如下：12345678910111213root@TIM:~# pip3 install --upgrade pipCollecting pip  Downloading http://mirrors.aliyun.com/pypi/packages/0f/74/ecd13431bcc456ed390b44c8a6e917c1">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://haoweisz.top/2018/05/11/jmeter-functions-3/"/>
+  <link rel="canonical" href="http://haoweisz.top/2018/05/18/Python-pip3-cannot-import-name-main-error-after-upgrading-pip/"/>
 
 
 
 
 
-  <title>Jmeter-函数String篇 | bear's blog</title>
+  <title>Python pip3 - cannot import name 'main' error | bear's blog</title>
   
 
 
@@ -265,7 +265,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/05/11/jmeter-functions-3/">
+    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/05/18/Python-pip3-cannot-import-name-main-error-after-upgrading-pip/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="熊叔">
@@ -282,7 +282,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Jmeter-函数String篇</h1>
+          <h1 class="post-title" itemprop="name headline">Python pip3 - cannot import name 'main' error</h1>
         
 
         <div class="post-meta">
@@ -294,8 +294,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T15:19:33+08:00">
-                2018-05-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-18T16:05:12+08:00">
+                2018-05-18
               </time>
             
 
@@ -321,8 +321,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化测试</span>
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
                   </a>
                 </span>
 
@@ -332,8 +332,8 @@
                 
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化测试/Jmeter/" itemprop="url" rel="index">
-                    <span itemprop="name">Jmeter</span>
+                  <a href="/categories/Python/pip/" itemprop="url" rel="index">
+                    <span itemprop="name">pip</span>
                   </a>
                 </span>
 
@@ -369,57 +369,12 @@
       
 
       
-        <p><strong>本章节函数类型为String</strong></p>
-<h4 id="函数：-regexFunction"><a href="#函数：-regexFunction" class="headerlink" title="函数：__regexFunction"></a>函数：<code>__regexFunction</code></h4><ul>
-<li><strong>作用：</strong> 正则表达式解析</li>
-</ul>
-<h4 id="函数：-escapeOroRegexpChars"><a href="#函数：-escapeOroRegexpChars" class="headerlink" title="函数：__escapeOroRegexpChars"></a>函数：<code>__escapeOroRegexpChars</code></h4><ul>
-<li><strong>作用：</strong> 正则表达式中的保留字符转译</li>
-</ul>
-<h4 id="函数：-char"><a href="#函数：-char" class="headerlink" title="函数：__char"></a>函数：<code>__char</code></h4><ul>
-<li><strong>作用：</strong> unicode编码转unicode字符串</li>
-<li><strong>例子:</strong> TODO<a id="more"></a>
-<h4 id="函数：-unescape"><a href="#函数：-unescape" class="headerlink" title="函数：__unescape"></a>函数：<code>__unescape</code></h4></li>
-<li><strong>作用：</strong> 调用Java反转译，字符串转译编码</li>
-<li><strong>例子：</strong> TODO</li>
-</ul>
-<h4 id="函数：-unescapeHtml"><a href="#函数：-unescapeHtml" class="headerlink" title="函数：__unescapeHtml"></a>函数：<code>__unescapeHtml</code></h4><ul>
-<li><p><strong>原文介绍：</strong></p>
-<blockquote>
-<p>Function to unescape a string containing HTML entity escapes to a string containing the actual Unicode characters corresponding to the escapes.  </p>
-</blockquote>
-<p>富HTML转译HTML ==&gt; 引申XXS攻击</p>
-</li>
-<li><p><strong>例子：</strong><code>A=&amp;lt;script&amp;gt;xxxxxxxx&amp;lt;/script&amp;gt;</code> 转译为<code>&lt;script&gt;xxxxxxxx&lt;/script&gt;</code></p>
-<p> <code>{__unescapeHtml(A)}</code> will return <code>&lt;script&gt;xxxxxxxx&lt;/script&gt;</code></p>
-</li>
-</ul>
-<h4 id="函数：-escapeHtml"><a href="#函数：-escapeHtml" class="headerlink" title="函数：__escapeHtml"></a>函数：<code>__escapeHtml</code></h4><ul>
-<li><strong>作用</strong> 和<code>__unescapeHtml</code> 相反</li>
-</ul>
-<h4 id="函数：-escapeXml"><a href="#函数：-escapeXml" class="headerlink" title="函数：__escapeXml"></a>函数：<code>__escapeXml</code></h4><ul>
-<li><strong>作用:</strong> 与<code>__escapeHtml</code> 一样，作用于XML</li>
-<li><p><strong>原文：</strong></p>
-<blockquote>
-<p>Function which escapes the characters in a String using XML 1.0 entities.</p>
-</blockquote>
-</li>
-<li><p><strong>例子：</strong> <code>${__escapeXml(&quot;bread&quot; &amp; &#39;butter&#39;)}</code><br>returns:  <code>&amp;quot;bread&amp;quot; &amp;amp; &amp;apos;butter&amp;apos;</code></p>
-</li>
-</ul>
-<h4 id="函数：-urldecode"><a href="#函数：-urldecode" class="headerlink" title="函数：__urldecode"></a>函数：<code>__urldecode</code></h4><ul>
-<li><strong>作用：</strong> 转译过的字符串，反转译</li>
-<li><strong>例子1：</strong><br><code>${__urldecode(Word+%22school%22+is+%22%C3%A9cole%22+in+french)}</code><br>returns:  <code>Word &quot;school&quot; is &quot;école&quot; in french</code></li>
-<li><strong>例子2：</strong><br><code>${__urldecode(%E5%85%A8%E5%9B%BD%E4%BA%BA%E6%B0%91%E5%96%9C%E8%BF%8E%E6%B2%B9%E4%BB%B7%E4%B8%8A%E6%B6%A8)}</code><br>returns: 全国人民喜迎油价上涨</li>
-</ul>
-<h4 id="函数：-urlencode"><a href="#函数：-urlencode" class="headerlink" title="函数：__urlencode"></a>函数：<code>__urlencode</code></h4><ul>
-<li><strong>作用：</strong> 与__urldecode相反</li>
-<li><strong>例子：</strong><br><code>${__urlencode(全国人民喜迎油价上涨)}</code><br>returns: <code>%E5%85%A8%E5%9B%BD%E4%BA%BA%E6%B0%91%E5%96%9C%E8%BF%8E%E6%B2%B9%E4%BB%B7%E4%B8%8A%E6%B6%A8</code></li>
-</ul>
-<h4 id="函数：-TestPlanName"><a href="#函数：-TestPlanName" class="headerlink" title="函数：__TestPlanName"></a>函数：<code>__TestPlanName</code></h4><ul>
-<li><strong>作用：</strong> 返回当前测试计划的名称</li>
-<li><strong>场景案例：</strong><br>jmeter批处理脚本一次执行多个testplan,可以用此函数把每个plan的名字打印在log。 <del>（强行找场景，也许有用。一般用于调试）</del></li>
-</ul>
+        <p>Ubuntu环境下pip3升级10.x后再运行pip3后报错。</p>
+<p>运行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">root@TIM:~# pip3 install --upgrade pip</span><br><span class="line">Collecting pip</span><br><span class="line">  Downloading http://mirrors.aliyun.com/pypi/packages/0f/74/ecd13431bcc456ed390b44c8a6e917c1820365cbebcb6a8974d1cd045ab4/pip-10.0.1-py2.py3-none-any.whl (1.3MB)</span><br><span class="line">    100% |████████████████████████████████| 1.3MB 3.6MB/s</span><br><span class="line">Installing collected packages: pip</span><br><span class="line">  Found existing installation: pip 8.1.1</span><br><span class="line">    Not uninstalling pip at /usr/lib/python3/dist-packages, outside environment /usr</span><br><span class="line">Successfully installed pip-10.0.1</span><br><span class="line">root@TIM:~# pip3 list</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/bin/pip3&quot;, line 9, in &lt;module&gt;</span><br><span class="line">    from pip import main</span><br><span class="line">ImportError: cannot import name &apos;main&apos;</span><br></pre></td></tr></table></figure></p>
+<p>搜索stackoverflow上答案如下<br>要恢复<code>pip3</code>二进制文件，需要运行<code>python3 -m pip uninstall pip &amp;&amp; apt isntall python3-pip --reinstall</code></p>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">root@TIM:~# python3 -m pip uninstall pip</span><br><span class="line">Uninstalling pip-10.0.1:</span><br><span class="line">  Would remove:</span><br><span class="line">    /usr/bin/pip3</span><br><span class="line">    /usr/local/bin/pip</span><br><span class="line">    /usr/local/bin/pip3</span><br><span class="line">    /usr/local/bin/pip3.5</span><br><span class="line">    /usr/local/lib/python3.5/dist-packages/pip-10.0.1.dist-info/*</span><br><span class="line">    /usr/local/lib/python3.5/dist-packages/pip/*</span><br><span class="line">Proceed (y/n)? y</span><br><span class="line">  Successfully uninstalled pip-10.0.1</span><br><span class="line">You are using pip version 8.1.1, however version 10.0.1 is available.</span><br><span class="line">You should consider upgrading via the &apos;pip install --upgrade pip&apos; command.</span><br><span class="line">root@TIM:~# apt install python3-pip --reinstall</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">0 upgraded, 0 newly installed, 1 reinstalled, 0 to remove and 133 not upgraded.</span><br><span class="line">Need to get 0 B/109 kB of archives.</span><br><span class="line">After this operation, 0 B of additional disk space will be used.</span><br><span class="line">(Reading database ... 100738 files and directories currently installed.)</span><br><span class="line">Preparing to unpack .../python3-pip_8.1.1-2ubuntu0.4_all.deb ...</span><br><span class="line">Unpacking python3-pip (8.1.1-2ubuntu0.4) over (8.1.1-2ubuntu0.4) ...</span><br><span class="line">Processing triggers for man-db (2.7.5-1) ...</span><br><span class="line">Setting up python3-pip (8.1.1-2ubuntu0.4) ...</span><br></pre></td></tr></table></figure></p>
+<p>Python3环境下使用<code>python3 -m pip XXXXX</code>替代<code>pip3</code></p>
+<p><a href="https://stackoverflow.com/" target="_blank" rel="noopener">stackoverflow</a>和<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>真是个好地方！</p>
 
       
     </div>
@@ -437,7 +392,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Jmeter/" rel="tag"># Jmeter</a>
+            <a href="/tags/pip/" rel="tag"># pip</a>
           
         </div>
       
@@ -450,8 +405,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/05/11/jmeter-functions-2/" rel="next" title="Jmeter函数-input篇">
-                <i class="fa fa-chevron-left"></i> Jmeter函数-input篇
+              <a href="/2018/05/16/Atom-error/" rel="next" title="Atom_Error">
+                <i class="fa fa-chevron-left"></i> Atom_Error
               </a>
             
           </div>
@@ -459,10 +414,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/05/14/jmeter-functions-4/" rel="prev" title="Jmeter函数-Calculation篇">
-                Jmeter函数-Calculation篇 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -514,17 +465,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -626,22 +568,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-regexFunction"><span class="nav-number">1.</span> <span class="nav-text">函数：__regexFunction</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-escapeOroRegexpChars"><span class="nav-number">2.</span> <span class="nav-text">函数：__escapeOroRegexpChars</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-char"><span class="nav-number">3.</span> <span class="nav-text">函数：__char</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-unescape"><span class="nav-number">4.</span> <span class="nav-text">函数：__unescape</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-unescapeHtml"><span class="nav-number">5.</span> <span class="nav-text">函数：__unescapeHtml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-escapeHtml"><span class="nav-number">6.</span> <span class="nav-text">函数：__escapeHtml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-escapeXml"><span class="nav-number">7.</span> <span class="nav-text">函数：__escapeXml</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-urldecode"><span class="nav-number">8.</span> <span class="nav-text">函数：__urldecode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-urlencode"><span class="nav-number">9.</span> <span class="nav-text">函数：__urlencode</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数：-TestPlanName"><span class="nav-number">10.</span> <span class="nav-text">函数：__TestPlanName</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
