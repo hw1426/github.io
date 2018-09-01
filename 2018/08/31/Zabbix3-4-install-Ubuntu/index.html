@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="bear&#39;s blog">
 <meta property="og:description" content="好久没有更新，一直在做两个项目的咨询，在咨询期间接触到监控工具Zabbix，并尝试部署在自己的ECS上，在安装过程碰到一些问题，总结一下。 此次选择使用官方部署包安装，此方法也适用: Debian 7 (Wheezy) and 8 (Jessie), Ubuntu 14.04 LTS (Trusty Tahr), 16.04 LTS (Xenial Xerus)   已Ubuntu 16.04 L">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-31T13:34:25.030Z">
+<meta property="og:updated_time" content="2018-09-01T01:55:20.154Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Zabbix3.4 for Ubuntu16.04LTS 安装">
 <meta name="twitter:description" content="好久没有更新，一直在做两个项目的咨询，在咨询期间接触到监控工具Zabbix，并尝试部署在自己的ECS上，在安装过程碰到一些问题，总结一下。 此次选择使用官方部署包安装，此方法也适用: Debian 7 (Wheezy) and 8 (Jessie), Ubuntu 14.04 LTS (Trusty Tahr), 16.04 LTS (Xenial Xerus)   已Ubuntu 16.04 L">
@@ -309,6 +309,28 @@
           
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/运维/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -368,24 +390,26 @@
 <p>Zabbix前端可以在浏览器中通过 <a href="http://zabbix-frontend-hostname/zabbix" target="_blank" rel="noopener">http://zabbix-frontend-hostname/zabbix</a> 进行访问。默认的用户名／密码为 Admin/zabbix。  注意<code>Admin</code>的<code>A</code>是大写。</p>
 </li>
 </ol>
-<h3 id="搭建后的问题"><a href="#搭建后的问题" class="headerlink" title="搭建后的问题"></a>搭建后的问题</h3><h4 id="中文界面无法设置"><a href="#中文界面无法设置" class="headerlink" title="中文界面无法设置"></a>中文界面无法设置</h4><p>  网上的解决方法是修改zabbix文件路径/usr/share/zabbix/include下locales.inc.php</p>
+<h3 id="搭建后的问题"><a href="#搭建后的问题" class="headerlink" title="搭建后的问题"></a>搭建后的问题</h3><h4 id="中文界面无法设置"><a href="#中文界面无法设置" class="headerlink" title="中文界面无法设置"></a>中文界面无法设置</h4><p>出现中文无法设置有两点需要排查，首先zabbix目录下的PHP文件是否配置正确，其次系统中文环境。</p>
+<ol>
+<li><p>检查Zabbix目录下的PHP</p>
+<p>安装路径下/usr/share/zabbix/include下locales.inc.php</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function getLocales() &#123;</span><br><span class="line">        return [</span><br><span class="line">                &apos;en_GB&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;English (en_GB)&apos;),     &apos;display&apos; =&gt; true],</span><br><span class="line">                &apos;en_US&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;English (en_US)&apos;),     &apos;display&apos; =&gt; true],</span><br><span class="line">                &apos;bg_BG&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;Bulgarian (bg_BG)&apos;),   &apos;display&apos; =&gt; false],</span><br><span class="line">                &apos;ca_ES&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;Catalan (ca_ES)&apos;),     &apos;display&apos; =&gt; false],</span><br><span class="line">                &apos;zh_CN&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;Chinese (zh_CN)&apos;),     &apos;display&apos; =&gt; true],</span><br><span class="line">                &apos;zh_TW&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;Chinese (zh_TW)&apos;),     &apos;display&apos; =&gt; true],</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <p>中的<code>&#39;zh_CN&#39;</code>改为<code>&#39;display&#39; =&gt; true</code></p>
 <p>  返回web端设置界面还是不能选择中文，提示<code>You are not able to choose some of the languages, because locales for them are not installed on the web server.</code>是应为没有中文环境所致</p>
-<h4 id="安装并设置中文环境"><a href="#安装并设置中文环境" class="headerlink" title="安装并设置中文环境"></a>安装并设置中文环境</h4><ol>
-<li><p>安装中文包：</p>
+<ol start="2">
+<li><p>安装并设置中文环境</p>
+<p>安装中文包：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install language-pack-zh-hant language-pack-zh-hans</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>配置环境变量：</p>
+<p>配置环境变量：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/environment</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>在文件中增加语言和编码的设置：</p>
+<p>在文件中增加语言和编码的设置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LANG=&quot;zh_CN.UTF-8&quot;</span><br><span class="line">LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重新设置本地配置：</p>
+<p>重新设置本地配置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>再重启apache和zabbix服务。</p>
+<p>再重启apache和zabbix服务。</p>
 </li>
 </ol>
 <h3 id="提示tips"><a href="#提示tips" class="headerlink" title="提示tips"></a>提示tips</h3><ol>
@@ -532,7 +556,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -614,7 +638,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Zabbix安装"><span class="nav-number">1.</span> <span class="nav-text">Zabbix安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建后的问题"><span class="nav-number">2.</span> <span class="nav-text">搭建后的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中文界面无法设置"><span class="nav-number">2.1.</span> <span class="nav-text">中文界面无法设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装并设置中文环境"><span class="nav-number">2.2.</span> <span class="nav-text">安装并设置中文环境</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提示tips"><span class="nav-number">3.</span> <span class="nav-text">提示tips</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Zabbix安装"><span class="nav-number">1.</span> <span class="nav-text">Zabbix安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建后的问题"><span class="nav-number">2.</span> <span class="nav-text">搭建后的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中文界面无法设置"><span class="nav-number">2.1.</span> <span class="nav-text">中文界面无法设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提示tips"><span class="nav-number">3.</span> <span class="nav-text">提示tips</span></a></li></ol></div>
             
 
           </div>
