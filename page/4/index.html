@@ -83,7 +83,7 @@
 
 <meta property="og:type" content="website">
 <meta property="og:title" content="bear&#39;s blog">
-<meta property="og:url" content="http://haoweisz.top/page/4/index.html">
+<meta property="og:url" content="https://hw1426.github.io/page/4/index.html">
 <meta property="og:site_name" content="bear&#39;s blog">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -117,7 +117,7 @@
 
 
 
-  <link rel="canonical" href="http://haoweisz.top/page/4/"/>
+  <link rel="canonical" href="https://hw1426.github.io/page/4/"/>
 
 
 
@@ -261,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/05/11/jmeter-functions-2/">
+    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2018/05/15/jmeter-functions-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="熊叔">
@@ -280,7 +280,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/05/11/jmeter-functions-2/" itemprop="url">Jmeter函数-input篇</a></h1>
+                <a class="post-title-link" href="/2018/05/15/jmeter-functions-6/" itemprop="url">Jmeter-Variables篇</a></h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T14:41:57+08:00">
-                2018-05-11
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-15T16:57:21+08:00">
+                2018-05-15
               </time>
             
 
@@ -366,187 +366,61 @@
 
       
         
-          <p><strong>本章节函数类型为input，此类函数可读取TXT、CSV、XML、DAT格式文件，常用于测试数据 <del>（文件常放在/bin目录下？）</del></strong></p>
-<h4 id="函数：-StringFromFile"><a href="#函数：-StringFromFile" class="headerlink" title="函数：__StringFromFile"></a>函数：<code>__StringFromFile</code></h4><ul>
-<li><strong>作用：</strong> Read a line from a file 文件中读取一行数据</li>
-<li><p><strong>详细解释：</strong> StringFromFile函数可用于从文本文件中读取字符串。 这对于运行需要大量可变数据的测试非常有用。</p>
-<p>例如，在测试银行应用程序时，可能需要100或1000个不同的帐号。另请参阅可能更易于使用的CSV数据集配置测试元素。 但是，那目前不支持多个输入文件。每次调用它时，都会从文件中读取下一行。 所有的线程共享同一个实例，所以不同的线程会得到不同的线。 当到达文件末尾时，除非达到最大循环次数，否则将从头开始重新读取。</p>
-<p>如果在测试脚本中有多个对该函数的引用，则每个文件都将独立打开该文件，即使文件名相同。 [如果该值要在其他地方再次使用，请为每个函数调用使用不同的变量名称。]</p>
-<blockquote>
-<p>函数实例在线程之间共享，并且由任何需要下一行输入的线程打开（重新）打开文件，因此使用threadNumber作为文件名的一部分会导致不可预知的行为。</p>
-</blockquote>
+          
+            <p><strong>函数类型为Variables及Formatting</strong>    </p>
+<h4 id="函数：-V"><a href="#函数：-V" class="headerlink" title="函数：__V"></a>函数：<code>__V</code></h4><ul>
+<li><p><strong>作用：</strong> V（变量）函数返回计算变量名称表达式的结果。 这可以用来评估嵌套变量引用（目前不支持）。</p>
 </li>
-<li><p><strong>特点：</strong></p>
-<ol>
-<li>数据文件支持多格式文件（.dat , .txt , .csv）；</li>
-<li><p>数据文件和脚本放在 <del>同一文件夹下（没实现，待验证）</del>，绝对路径已验证。</p>
-<p>PS.更正相对路径已验证，数据文件应放在jmeter/bin路径下</p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/05/11/jmeter-functions-2/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/05/10/jmeter-functions-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="熊叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/bear.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="bear's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/10/jmeter-functions-1/" itemprop="url">Jmeter函数-information篇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-10T16:53:48+08:00">
-                2018-05-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化测试</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化测试/Jmeter/" itemprop="url" rel="index">
-                    <span itemprop="name">Jmeter</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p><strong>本章节为information函数类型，多用于打印log调试用。</strong></p>
-<p>PS.补充官方Parameters和Examples</p>
-<h4 id="函数：-threadNum"><a href="#函数：-threadNum" class="headerlink" title="函数：__threadNum"></a>函数：<code>__threadNum</code></h4><ul>
-<li><strong>作用：</strong> 获取当前线程（用户）编号</li>
-<li><strong>场景案例：</strong> 线程1录入user1 input ;线程2录入user2 input;……………<br>在sampler中的parameters录入<code>user${__threadNum} input</code><br>适用场景在log中调试用</li>
+<li><p><strong>例子：</strong><br>如果有变量A1，A2和N = 1：则如下</p>
+<ul>
+<li><p><code>${A1}</code>     //works OK</p>
+</li>
+<li><p><code>${A${N}}</code>    //does not work</p>
+</li>
+<li><p><code>${__V(A${N})}</code>     //work OK</p>
+</li>
 </ul>
-<h4 id="函数：-samplerName"><a href="#函数：-samplerName" class="headerlink" title="函数：__samplerName"></a>函数：<code>__samplerName</code></h4><ul>
-<li><strong>作用：</strong> 返回当前sampler的名称</li>
+</li>
+<li><p><strong>参数：</strong></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Variable name</td>
+<td>The variable to be evaluated.</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<p><strong>常用于变量命拼接</strong></p>
+<ul>
+<li><p><strong>场景案例：</strong><br>以下为用户自定义变量</p>
+<ul>
+<li>name1 = tim</li>
+<li>name2 = tom</li>
+<li>name3 = jack</li>
+</ul>
+<p>使用<code>${__V(name${__threadNum})}</code>调试</p>
+</li>
+</ul>
+<h4 id="函数：-eval"><a href="#函数：-eval" class="headerlink" title="函数：__eval"></a>函数：<code>__eval</code></h4><ul>
+<li><p><strong>作用：</strong> 返回了一个字符串的表达式的值。可以在存储在变量中的字符串中插入变量和函数引用。 例如，给定以下变量：</p>
+<ul>
+<li>name = tim</li>
+<li>column = age</li>
+<li>table = birthdays</li>
+</ul>
+<p>SQL = select ${column} from ${table} where name = ‘${name}’<br>则：<code>${__eval(${SQL})}</code>  evaluate as “select age from birthdays where name = ‘tim’”</p>
+<p>这可以与CSV数据集一起使用，例如在数据文件中定义了SQL语句和值。（常用于动态拼接字符串）</p>
+</li>
 <li><strong>参数：</strong></li>
 </ul>
 <table>
@@ -559,18 +433,210 @@
 </thead>
 <tbody>
 <tr>
-<td>Variable Name</td>
-<td>A reference name <code>- refName -</code> for reusing the value created by this function. Stored values are of the form <code>${refName}</code>.</td>
-<td>No</td>
+<td>Variable name</td>
+<td>The variable to be evaluated.</td>
+<td>Yes</td>
 </tr>
 </tbody>
 </table>
 <ul>
-<li><strong>例子：</strong> <code>${__samplerName()}</code></li>
-<li><strong>场景案例：</strong> 也是用于log中调试
+<li><p><strong>场景案例：</strong><br>以下为用户自定义变量</p>
+<ul>
+<li>name1 = tim</li>
+<li>name2 = tom</li>
+<li>name3 = jack</li>
+</ul>
+<p>则：blogname = <code>${__V(name${__threadNum})}</code>的blog<br>tim的blog=<code>${__eval(${blogname})}</code></p>
+</li>
+</ul>
+<h4 id="函数-evalVar"><a href="#函数-evalVar" class="headerlink" title="函数__evalVar"></a>函数<code>__evalVar</code></h4><ul>
+<li>略</li>
+</ul>
+<h4 id="函数-split"><a href="#函数-split" class="headerlink" title="函数 __split"></a>函数 <code>__split</code></h4><ul>
+<li>略</li>
+</ul>
+<h4 id="函数-dateTimeConvert"><a href="#函数-dateTimeConvert" class="headerlink" title="函数__dateTimeConvert"></a>函数<code>__dateTimeConvert</code></h4><ul>
+<li>略</li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2018/05/15/jmeter-functions-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/15/jmeter-functions-5/" itemprop="url">Jmeter函数-Properties篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-15T10:12:35+08:00">
+                2018-05-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化测试</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化测试/Jmeter/" itemprop="url" rel="index">
+                    <span itemprop="name">Jmeter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>本章节函数类型为Properties</strong></p>
+<h4 id="函数-isPropDefined"><a href="#函数-isPropDefined" class="headerlink" title="函数 __isPropDefined"></a>函数 <code>__isPropDefined</code></h4><ul>
+<li><strong>作用：</strong>  如果属性存在，此函数返回true，否则返回false。</li>
+<li><strong>参数：</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+<th>Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Property Name</td>
+<td>The Property Name to be used to check if defined</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>例子：</strong><br><code>${__isPropDefined(START.HMS)}</code> will return TRUE
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2018/05/10/jmeter-functions-1/#more" rel="contents">
+            <a class="btn" href="/2018/05/15/jmeter-functions-5/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -621,7 +687,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://haoweisz.top/2018/04/26/linux-user-sudo/">
+    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2018/05/14/jmeter-functions-4/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="熊叔">
@@ -640,7 +706,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/04/26/linux-user-sudo/" itemprop="url">Linux用户配置sudo权限</a></h1>
+                <a class="post-title-link" href="/2018/05/14/jmeter-functions-4/" itemprop="url">Jmeter函数-Calculation篇</a></h1>
         
 
         <div class="post-meta">
@@ -652,8 +718,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-26T11:07:09+08:00">
-                2018-04-26
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-14T13:14:52+08:00">
+                2018-05-14
               </time>
             
 
@@ -677,8 +743,19 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化测试</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化测试/Jmeter/" itemprop="url" rel="index">
+                    <span itemprop="name">Jmeter</span>
                   </a>
                 </span>
 
@@ -715,24 +792,39 @@
 
       
         
-          
-            <p>在套路云上折腾docker中发现本地用户没有sudo权限（貌似本地虚拟机没有出现这个问题），度娘后总结如下：</p>
-<p><strong>sudo的工作过程：</strong></p>
-<ul>
-<li>当用户执行sudo，系统优先寻找/etc/sudoers文件（不是sudoers.d文件夹）,判断用户是否有执行sudo的权限；<br>未有权限报错：<code>xxx is not in the sudoers file.This incident will be reported</code></li>
-<li>确认用户（用户组）具有可执行sudo权限后，让用户输入密码（或免密码）执行。</li>
+          <p><strong>本章节函数类型为Calculation</strong></p>
+<h4 id="函数：-counter"><a href="#函数：-counter" class="headerlink" title="函数：__counter"></a>函数：<code>__counter</code></h4><ul>
+<li><strong>作用：</strong> 生成递增数</li>
+<li><strong>参数:</strong></li>
 </ul>
-<p><strong>解决过程如下：</strong><br>root用户登录,编辑sudoers文件<br><code>vim /etc/sudoers</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#</span><br><span class="line"># This file MUST be edited with the &apos;visudo&apos; command as root.</span><br><span class="line">#</span><br><span class="line"># Please consider adding local content in /etc/sudoers.d/ instead of</span><br><span class="line"># directly modifying this file.</span><br><span class="line">#</span><br><span class="line"># See the man page for details on how to write a sudoers file.</span><br><span class="line">#</span><br><span class="line">Defaults        env_reset</span><br><span class="line">Defaults        mail_badpass</span><br><span class="line">Defaults        secure_path=&quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin&quot;</span><br><span class="line"></span><br><span class="line"># Host alias specification</span><br><span class="line"></span><br><span class="line"># User alias specification</span><br><span class="line"></span><br><span class="line"># Cmnd alias specification</span><br><span class="line"></span><br><span class="line"># User privilege specification</span><br><span class="line">root    ALL=(ALL:ALL) ALL</span><br><span class="line"># Members of the admin group may gain root privileges</span><br><span class="line">%admin ALL=(ALL) ALL</span><br><span class="line"></span><br><span class="line"># Allow members of group sudo to execute any command</span><br><span class="line">%sudo   ALL=(ALL:ALL) ALL</span><br><span class="line"></span><br><span class="line"># See sudoers(5) for more information on &quot;#include&quot; directives:</span><br><span class="line"></span><br><span class="line">#includedir /etc/sudoers.d</span><br></pre></td></tr></table></figure>
-<p>在# User privilege specification  下插入（可选）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">youuser             ALL=(ALL:ALL)                ALL</span><br><span class="line">#%youuser           ALL=(ALL:ALL)                ALL</span><br><span class="line">#youuser            ALL=(ALL:ALL)                NOPASSWD: ALL</span><br><span class="line">#%youuser           ALL=(ALL:ALL)                NOPASSWD: ALL</span><br></pre></td></tr></table></figure></p>
-<p>第一行:允许用户youuser执行sudo命令(需要输入密码).</p>
-<p>第二行:允许用户组youuser里面的用户执行sudo命令(需要输入密码).</p>
-<p>第三行:允许用户youuser执行sudo命令,并且在执行的时候不输入密码.</p>
-<p>第四行:允许用户组youuser里面的用户执行sudo命令,并且在执行的时候不输入密码。</p>
-<p><code>%</code>表示用户组</p>
-<p>这样普通用户有sudo权限</p>
-
-          
+<table>
+<thead>
+<tr>
+<th>Attribute</th>
+<th style="text-align:left">Description</th>
+<th style="text-align:center">Required</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>First argument</td>
+<td style="text-align:left">TRUE if you wish each simulated user’s counter to be kept independent and separate from the other users. FALSE for a global counter.</td>
+<td style="text-align:center">Yes</td>
+</tr>
+<tr>
+<td>Second argument</td>
+<td style="text-align:left">A reference name for reusing the value created by this function. Stored values are of the form ${refName}. This allows you to keep one counter and refer to its value in multiple places.</td>
+<td style="text-align:center">No</td>
+</tr>
+</tbody>
+</table>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/14/jmeter-functions-4/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -770,7 +862,7 @@
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
+    <a class="extend prev" rel="prev" href="/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -820,7 +912,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -831,7 +923,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -917,7 +1009,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -927,9 +1019,6 @@
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
-
-
 
   <span class="post-meta-divider">|</span>
 
@@ -937,12 +1026,6 @@
 
   <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
 
-
-&nbsp;&nbsp;|&nbsp;&nbsp;本站总点击 <span id="busuanzi_value_site_pv"></span> 次
-&nbsp;&nbsp;|&nbsp;&nbsp;您是第 <span id="busuanzi_value_site_uv"></span> 位访客
-
-<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
 
 
 
