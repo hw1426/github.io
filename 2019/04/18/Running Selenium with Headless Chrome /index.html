@@ -81,13 +81,16 @@
 
 
 
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="bear&#39;s blog">
-<meta property="og:url" content="https://hw1426.github.io/tags/语法/index.html">
+<meta property="og:url" content="https://hw1426.github.io/2019/04/18/Running Selenium with Headless Chrome /index.html">
 <meta property="og:site_name" content="bear&#39;s blog">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://haoweisz.top/static/upload/20190418/upload_c4bc6150b1e529f8354826cecbd6b392.png">
+<meta property="og:updated_time" content="2019-04-18T12:25:29.694Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bear&#39;s blog">
+<meta name="twitter:image" content="http://haoweisz.top/static/upload/20190418/upload_c4bc6150b1e529f8354826cecbd6b392.png">
 
 
 
@@ -117,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="https://hw1426.github.io/tags/语法/"/>
+  <link rel="canonical" href="https://hw1426.github.io/2019/04/18/Running Selenium with Headless Chrome /"/>
 
 
 
 
 
-  <title>标签: 语法 | bear's blog</title>
+  <title> | bear's blog</title>
   
 
 
@@ -142,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -246,54 +249,156 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>语法<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2019/04/18/Running Selenium with Headless Chrome /">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/07/27/Python3-6-fstrings/" itemprop="url">
-              
-                <span itemprop="name">Python3.6新字符串格式化语法</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-07-27T09:29:57+08:00"
-              content="2018-07-27" >
-          07-27
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T12:24:18+08:00">
+                2019-04-18
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span id="busuanzi_container_page_pv">&nbsp;&nbsp;|&nbsp;&nbsp;阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://haoweisz.top/static/upload/20190418/upload_c4bc6150b1e529f8354826cecbd6b392.png" alt="PRtXZ0kRPXpxIi74Dt8MaWh3.jpg"></p>
+<a id="more"></a>
+<p>由于2017年7月后phantomJS暂停维护（<a href="https://npm.taobao.org/mirrors/phantomjs" target="_blank" rel="noopener">phantomjs-2.5.0-beta2</a>）， 需要新的headless浏览器做替代，Chrome59或更高版本已加入headless功能(目前Firefox也支持)，相对PhantomJS，Chrome更快更稳定。可替代PhantomJS做自动化测试和爬虫。</p>
+<h4 id="配置Selenium"><a href="#配置Selenium" class="headerlink" title="配置Selenium"></a>配置Selenium</h4><p>首先创建<code>ChromeOptions</code>，用于配置将传递供给WebDriver初始化程序的选择对象<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">options = webdriver.ChromeOptions()</span><br></pre></td></tr></table></figure></p>
+<p>用<code>add_argument</code>方法指定headless,相当于<code>--headless</code>命令行参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">options.add_argument(&apos;headless&apos;)</span><br></pre></td></tr></table></figure></p>
+<p>初始化驱动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">driver = webdriver.Chrome(chrome_options=options)</span><br></pre></td></tr></table></figure></p>
+<p>配置完成。</p>
+<p>实例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">from selenium import webdriver</span><br><span class="line">import time</span><br><span class="line">options = webdriver.ChromeOptions()</span><br><span class="line">options.add_argument(&apos;headless&apos;)</span><br><span class="line"></span><br><span class="line">class Douban():</span><br><span class="line">    def __init__(self):</span><br><span class="line">        print(&quot;test before!!!&quot;)</span><br><span class="line">        self.dr = webdriver.Chrome(chrome_options=options)</span><br><span class="line">        self.dr.get(&quot;https://movie.douban.com/chart&quot;)</span><br><span class="line">        time.sleep(5)</span><br><span class="line"></span><br><span class="line">    def list(self):</span><br><span class="line">        lists = self.dr.find_elements_by_css_selector(&quot;.article .item&quot;)</span><br><span class="line">        i = 1</span><br><span class="line">        for list in lists:</span><br><span class="line">            text = list.text.replace(&apos;\n&apos;,&apos;&apos;)</span><br><span class="line">            print(str(i)+&quot;---&gt;&quot;+ text)</span><br><span class="line">            print(&apos;~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~&apos;)</span><br><span class="line">            i = i + 1</span><br><span class="line"></span><br><span class="line">    def quit(self):</span><br><span class="line">        self.dr.quit()</span><br><span class="line"></span><br><span class="line">if __name__ == &apos;__main__&apos;:</span><br><span class="line">    Douban().list()</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/Zabbix34 for Ubuntu1604LTS 安装/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/HEXO Cannot read property 'replace' of null/" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -301,6 +406,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -321,8 +430,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -424,6 +542,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Selenium"><span class="nav-number">1.</span> <span class="nav-text">配置Selenium</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -561,6 +695,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 

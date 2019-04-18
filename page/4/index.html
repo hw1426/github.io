@@ -261,251 +261,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2018/05/15/jmeter-functions-6/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="熊叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/bear.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="bear's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/05/15/jmeter-functions-6/" itemprop="url">Jmeter-Variables篇</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-15T16:57:21+08:00">
-                2018-05-15
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
-                    <span itemprop="name">自动化测试</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/自动化测试/Jmeter/" itemprop="url" rel="index">
-                    <span itemprop="name">Jmeter</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>函数类型为Variables及Formatting</strong>    </p>
-<h4 id="函数：-V"><a href="#函数：-V" class="headerlink" title="函数：__V"></a>函数：<code>__V</code></h4><ul>
-<li><p><strong>作用：</strong> V（变量）函数返回计算变量名称表达式的结果。 这可以用来评估嵌套变量引用（目前不支持）。</p>
-</li>
-<li><p><strong>例子：</strong><br>如果有变量A1，A2和N = 1：则如下</p>
-<ul>
-<li><p><code>${A1}</code>     //works OK</p>
-</li>
-<li><p><code>${A${N}}</code>    //does not work</p>
-</li>
-<li><p><code>${__V(A${N})}</code>     //work OK</p>
-</li>
-</ul>
-</li>
-<li><p><strong>参数：</strong></p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Variable name</td>
-<td>The variable to be evaluated.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<p><strong>常用于变量命拼接</strong></p>
-<ul>
-<li><p><strong>场景案例：</strong><br>以下为用户自定义变量</p>
-<ul>
-<li>name1 = tim</li>
-<li>name2 = tom</li>
-<li>name3 = jack</li>
-</ul>
-<p>使用<code>${__V(name${__threadNum})}</code>调试</p>
-</li>
-</ul>
-<h4 id="函数：-eval"><a href="#函数：-eval" class="headerlink" title="函数：__eval"></a>函数：<code>__eval</code></h4><ul>
-<li><p><strong>作用：</strong> 返回了一个字符串的表达式的值。可以在存储在变量中的字符串中插入变量和函数引用。 例如，给定以下变量：</p>
-<ul>
-<li>name = tim</li>
-<li>column = age</li>
-<li>table = birthdays</li>
-</ul>
-<p>SQL = select ${column} from ${table} where name = ‘${name}’<br>则：<code>${__eval(${SQL})}</code>  evaluate as “select age from birthdays where name = ‘tim’”</p>
-<p>这可以与CSV数据集一起使用，例如在数据文件中定义了SQL语句和值。（常用于动态拼接字符串）</p>
-</li>
-<li><strong>参数：</strong></li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-<th>Required</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Variable name</td>
-<td>The variable to be evaluated.</td>
-<td>Yes</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li><p><strong>场景案例：</strong><br>以下为用户自定义变量</p>
-<ul>
-<li>name1 = tim</li>
-<li>name2 = tom</li>
-<li>name3 = jack</li>
-</ul>
-<p>则：blogname = <code>${__V(name${__threadNum})}</code>的blog<br>tim的blog=<code>${__eval(${blogname})}</code></p>
-</li>
-</ul>
-<h4 id="函数-evalVar"><a href="#函数-evalVar" class="headerlink" title="函数__evalVar"></a>函数<code>__evalVar</code></h4><ul>
-<li>略</li>
-</ul>
-<h4 id="函数-split"><a href="#函数-split" class="headerlink" title="函数 __split"></a>函数 <code>__split</code></h4><ul>
-<li>略</li>
-</ul>
-<h4 id="函数-dateTimeConvert"><a href="#函数-dateTimeConvert" class="headerlink" title="函数__dateTimeConvert"></a>函数<code>__dateTimeConvert</code></h4><ul>
-<li>略</li>
-</ul>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2018/05/15/jmeter-functions-5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -858,6 +613,174 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2018/05/11/jmeter-functions-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/11/jmeter-functions-3/" itemprop="url">Jmeter-函数String篇</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-11T15:19:33+08:00">
+                2018-05-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化测试/" itemprop="url" rel="index">
+                    <span itemprop="name">自动化测试</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/自动化测试/Jmeter/" itemprop="url" rel="index">
+                    <span itemprop="name">Jmeter</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p><strong>本章节函数类型为String</strong></p>
+<h4 id="函数：-regexFunction"><a href="#函数：-regexFunction" class="headerlink" title="函数：__regexFunction"></a>函数：<code>__regexFunction</code></h4><ul>
+<li><strong>作用：</strong> 正则表达式解析</li>
+</ul>
+<h4 id="函数：-escapeOroRegexpChars"><a href="#函数：-escapeOroRegexpChars" class="headerlink" title="函数：__escapeOroRegexpChars"></a>函数：<code>__escapeOroRegexpChars</code></h4><ul>
+<li><strong>作用：</strong> 正则表达式中的保留字符转译</li>
+</ul>
+<h4 id="函数：-char"><a href="#函数：-char" class="headerlink" title="函数：__char"></a>函数：<code>__char</code></h4><ul>
+<li><strong>作用：</strong> unicode编码转unicode字符串</li>
+<li><strong>例子:</strong> TODO
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/05/11/jmeter-functions-3/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -912,7 +835,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -923,7 +846,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -934,7 +857,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>

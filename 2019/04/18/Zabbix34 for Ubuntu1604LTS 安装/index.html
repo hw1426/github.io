@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/bitbug_favicon_32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/bitbug_favicon_16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+  <link rel="manifest" href="/images/manifest.json">
+
+
+
+
+  <meta name="keywords" content="自动化测试, Python, Selenium" />
+
+
+
+
+
+
+
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:title" content="bear&#39;s blog">
+<meta property="og:url" content="https://hw1426.github.io/2019/04/18/Zabbix34 for Ubuntu1604LTS 安装/index.html">
+<meta property="og:site_name" content="bear&#39;s blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://haoweisz.top/static/upload/20190418/upload_8bd3094050fe25f387859de450cb0c18.png">
+<meta property="og:updated_time" content="2019-04-18T12:25:29.533Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bear&#39;s blog">
+<meta name="twitter:image" content="http://haoweisz.top/static/upload/20190418/upload_8bd3094050fe25f387859de450cb0c18.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hw1426.github.io/2019/04/18/Zabbix34 for Ubuntu1604LTS 安装/"/>
+
+
+
+
+
+  <title> | bear's blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">bear's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">小熊变老熊</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2019/04/18/Zabbix34 for Ubuntu1604LTS 安装/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline"></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T12:24:18+08:00">
+                2019-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span id="busuanzi_container_page_pv">&nbsp;&nbsp;|&nbsp;&nbsp;阅读量 <span id="busuanzi_value_page_pv"></span> 次</span>
+          
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://haoweisz.top/static/upload/20190418/upload_8bd3094050fe25f387859de450cb0c18.png" alt="7tGuE6hyvvzoXWgwY2Ey7KCg.jpg"></p>
+<a id="more"></a>
+<p>好久没有更新，一直在做两个项目的咨询，在咨询期间接触到监控工具Zabbix，并尝试部署在自己的ECS上，在安装过程碰到一些问题，总结一下。</p>
+<p>此次选择使用官方部署包安装，此方法也适用: Debian 7 (Wheezy) and 8 (Jessie), Ubuntu 14.04 LTS (Trusty Tahr), 16.04 LTS (Xenial Xerus)  </p>
+<p>已Ubuntu 16.04 LTS为例</p>
+<h3 id="Zabbix安装"><a href="#Zabbix安装" class="headerlink" title="Zabbix安装"></a>Zabbix安装</h3><ol>
+<li><p>下载部署包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://repo.zabbix.com/zabbix/3.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.4-1+xenial_all.deb</span><br><span class="line">dpkg -i zabbix-release_3.4-1+xenial_all.deb</span><br><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装部署包<br>使用mysql数据库安装Zabbix server、WEB前端的示例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install zabbix-server-mysql zabbix-frontend-php</span><br></pre></td></tr></table></figure>
+<p>只安装Zabbix Agent的示例。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install zabbix-agent</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安装初始化数据库<br>在MySQL上安装Zabbix数据库和用户</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysql -uroot -p&lt;password&gt;</span><br><span class="line">mysql&gt; create database zabbix character set utf8 collate utf8_bin;</span><br><span class="line">mysql&gt; grant all privileges on zabbix.* to zabbix@localhost identified by &apos;yourpassword&apos;;</span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure>
+<p>然后导入初始架构（Schema）和数据</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># cd /usr/share/doc/zabbix-server-mysql</span><br><span class="line"># zcat create.sql.gz | mysql -uroot zabbix</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动Zabbix Server进程<br>在zabbix_server.conf中编辑数据库配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># vi /etc/zabbix/zabbix_server.conf</span><br><span class="line">DBHost=localhost</span><br><span class="line">DBName=zabbix</span><br><span class="line">DBUser=zabbix</span><br><span class="line">DBPassword=yourpassword</span><br></pre></td></tr></table></figure>
+<p>启动Zabbix Server进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service zabbix-server start</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>编辑Zabbix前端的PHP配置</p>
+<p>Zabbix前端的Apache配置文件位于 /etc/apache2/conf.d/zabbix 或者 /etc/apache2/conf-enabled/zabbix.conf 。一些PHP设置已经完成了配置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">php_value max_execution_time 300</span><br><span class="line">php_value memory_limit 128M</span><br><span class="line">php_value post_max_size 16M</span><br><span class="line">php_value upload_max_filesize 2M</span><br><span class="line">php_value max_input_time 300</span><br><span class="line">php_value always_populate_raw_post_data -1</span><br><span class="line"># php_value date.timezone Europe/Riga</span><br></pre></td></tr></table></figure>
+<p>依据所在时区，你可以取消 “date.timezone” 设置的注释，建议改为 <code>Asia/Shanghai</code>。在配置文件更改后，需要重启Apache Web服务器。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
+<p>Zabbix前端可以在浏览器中通过 <a href="http://zabbix-frontend-hostname/zabbix" target="_blank" rel="noopener">http://zabbix-frontend-hostname/zabbix</a> 进行访问。默认的用户名／密码为 Admin/zabbix。  注意<code>Admin</code>的<code>A</code>是大写。</p>
+</li>
+</ol>
+<h3 id="搭建后的问题"><a href="#搭建后的问题" class="headerlink" title="搭建后的问题"></a>搭建后的问题</h3><h4 id="中文界面无法设置"><a href="#中文界面无法设置" class="headerlink" title="中文界面无法设置"></a>中文界面无法设置</h4><p>出现中文无法设置有两点需要排查，首先zabbix目录下的PHP文件是否配置正确，其次系统中文环境。</p>
+<ol>
+<li><p>检查Zabbix目录下的PHP</p>
+<p>安装路径下/usr/share/zabbix/include下locales.inc.php</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function getLocales() &#123;</span><br><span class="line">        return [</span><br><span class="line">                &apos;en_GB&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;English (en_GB)&apos;),     &apos;display&apos; =&gt; true],</span><br><span class="line">                &apos;en_US&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;English (en_US)&apos;),     &apos;display&apos; =&gt; true],</span><br><span class="line">                &apos;bg_BG&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;Bulgarian (bg_BG)&apos;),   &apos;display&apos; =&gt; false],</span><br><span class="line">                &apos;ca_ES&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;Catalan (ca_ES)&apos;),     &apos;display&apos; =&gt; false],</span><br><span class="line">                &apos;zh_CN&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;Chinese (zh_CN)&apos;),     &apos;display&apos; =&gt; true],</span><br><span class="line">                &apos;zh_TW&apos; =&gt; [&apos;name&apos; =&gt; _(&apos;Chinese (zh_TW)&apos;),     &apos;display&apos; =&gt; true],</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>中的<code>&#39;zh_CN&#39;</code>改为<code>&#39;display&#39; =&gt; true</code></p>
+<p>  返回web端设置界面还是不能选择中文，提示<code>You are not able to choose some of the languages, because locales for them are not installed on the web server.</code>是应为没有中文环境所致</p>
+<ol start="2">
+<li><p>安装并设置中文环境</p>
+<p>安装中文包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get install language-pack-zh-hant language-pack-zh-hans</span><br></pre></td></tr></table></figure>
+<p>配置环境变量：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/environment</span><br></pre></td></tr></table></figure>
+<p>在文件中增加语言和编码的设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LANG=&quot;zh_CN.UTF-8&quot;</span><br><span class="line">LANGUAGE=&quot;zh_CN:zh:en_US:en&quot;</span><br></pre></td></tr></table></figure>
+<p>重新设置本地配置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dpkg-reconfigure locales</span><br></pre></td></tr></table></figure>
+<p>再重启apache和zabbix服务。</p>
+</li>
+</ol>
+<h3 id="提示tips"><a href="#提示tips" class="headerlink" title="提示tips"></a>提示tips</h3><ol>
+<li><p>log: <code>/var/log/zabbix/zabbix_server/log</code>和<code>agent.log</code>报错找log</p>
+</li>
+<li><p>conf：<code>/etc/zabbix/*.conf</code></p>
+</li>
+<li><p>安装目录：<code>/usr/share/zabbix</code> 重要的<code>include，font .etc</code></p>
+<p>重新启动zabbix－server服务进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service zabbix-server restart</span><br></pre></td></tr></table></figure>
+<p>重新启动zabbix－agent进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service zabbix-server restart</span><br></pre></td></tr></table></figure>
+<p>重启apache进程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service apache2 restart</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><a href="https://www.zabbix.com/documentation/3.4/zh/manual" target="_blank" rel="noopener">zabbix官方文档</a></p>
+<h3 id="更新："><a href="#更新：" class="headerlink" title="更新："></a>更新：</h3><p>在zabbix设置中，不要随意开启HTTP鉴权，会导致web端无法登录。解决方法如下：</p>
+<ol>
+<li>进入mysql</li>
+<li>查询库</li>
+<li>联接<code>zabbix</code>库</li>
+<li>在<code>config</code>表中查询<code>authentication_type</code>字段</li>
+<li>将<code>authentication_type</code>字段更正为<code>0</code></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mysql</span><br><span class="line">show databases;</span><br><span class="line">connect zabbix;  </span><br><span class="line">select authentication_type from config;  </span><br><span class="line">UPDATE config SET authentication_type = 0;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/Netdata安装及初体验/" rel="next" title="">
+                <i class="fa fa-chevron-left"></i> 
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/Running Selenium with Headless Chrome /" rel="prev" title="">
+                 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/bear.jpg"
+                alt="熊叔" />
+            
+              <p class="site-author-name" itemprop="name">熊叔</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hw1426" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:haoweisz05@gmail.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.testclass.net/" title="测试教程网" target="_blank">测试教程网</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.v2ex.com/" title="V2EX" target="_blank">V2EX</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.testpub.cn/" title="测试学习小组" target="_blank">测试学习小组</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Zabbix安装"><span class="nav-number">1.</span> <span class="nav-text">Zabbix安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#搭建后的问题"><span class="nav-number">2.</span> <span class="nav-text">搭建后的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#中文界面无法设置"><span class="nav-number">2.1.</span> <span class="nav-text">中文界面无法设置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提示tips"><span class="nav-number">3.</span> <span class="nav-text">提示tips</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更新："><span class="nav-number">4.</span> <span class="nav-text">更新：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">熊叔</span>
+
+  
+</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

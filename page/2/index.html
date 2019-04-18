@@ -261,7 +261,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2019/03/01/netdata_install/">
+    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2019/04/18/Netdata安装及初体验/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="熊叔">
@@ -280,7 +280,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2019/03/01/netdata_install/" itemprop="url">Netdata安装及初体验</a></h1>
+                <a class="post-title-link" href="/2019/04/18/Netdata安装及初体验/" itemprop="url">未命名</a></h1>
         
 
         <div class="post-meta">
@@ -292,8 +292,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-01T16:52:43+08:00">
-                2019-03-01
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-18T12:24:18+08:00">
+                2019-04-18
               </time>
             
 
@@ -333,164 +333,10 @@
 
       
         
-          <p><img src="https://haoweisz.top/static/upload/20190320/XiEqW89lD-NhpRhIHdayhGzg.jpg" alt="alt"></p>
+          <p><img src="http://haoweisz.top/static/upload/20190418/upload_07e2e11f46b8a991ea1b3f56744cd5c7.png" alt="XiEqW89lD-NhpRhIHdayhGzg.jpg"></p>
           <!--noindex-->
           <div class="post-button text-center">
-            <a class="btn" href="/2019/03/01/netdata_install/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2018/08/31/Zabbix3-4-install-Ubuntu/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="熊叔">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/bear.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="bear's blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/31/Zabbix3-4-install-Ubuntu/" itemprop="url">Zabbix3.4 for Ubuntu16.04LTS 安装</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-31T20:31:27+08:00">
-                2018-08-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/运维/" itemprop="url" rel="index">
-                    <span itemprop="name">运维</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>好久没有更新，一直在做两个项目的咨询，在咨询期间接触到监控工具Zabbix，并尝试部署在自己的ECS上，在安装过程碰到一些问题，总结一下。</p>
-<p>此次选择使用官方部署包安装，此方法也适用: Debian 7 (Wheezy) and 8 (Jessie), Ubuntu 14.04 LTS (Trusty Tahr), 16.04 LTS (Xenial Xerus)  </p>
-<p>已Ubuntu 16.04 LTS为例</p>
-<h3 id="Zabbix安装"><a href="#Zabbix安装" class="headerlink" title="Zabbix安装"></a>Zabbix安装</h3><ol>
-<li>下载部署包<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget http://repo.zabbix.com/zabbix/3.4/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.4-1+xenial_all.deb</span><br><span class="line">dpkg -i zabbix-release_3.4-1+xenial_all.deb</span><br><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/31/Zabbix3-4-install-Ubuntu/#more" rel="contents">
+            <a class="btn" href="/2019/04/18/Netdata安装及初体验/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -694,6 +540,166 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hw1426.github.io/2018/05/18/Python-pip3-cannot-import-name-main-error-after-upgrading-pip/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="熊叔">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/bear.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="bear's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/05/18/Python-pip3-cannot-import-name-main-error-after-upgrading-pip/" itemprop="url">Python pip3 - cannot import name 'main' error</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-18T16:05:12+08:00">
+                2018-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Python/pip/" itemprop="url" rel="index">
+                    <span itemprop="name">pip</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Ubuntu环境下pip3升级10.x后再运行pip3后报错。</p>
+<p>运行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">root@TIM:~# pip3 install --upgrade pip</span><br><span class="line">Collecting pip</span><br><span class="line">  Downloading http://mirrors.aliyun.com/pypi/packages/0f/74/ecd13431bcc456ed390b44c8a6e917c1820365cbebcb6a8974d1cd045ab4/pip-10.0.1-py2.py3-none-any.whl (1.3MB)</span><br><span class="line">    100% |████████████████████████████████| 1.3MB 3.6MB/s</span><br><span class="line">Installing collected packages: pip</span><br><span class="line">  Found existing installation: pip 8.1.1</span><br><span class="line">    Not uninstalling pip at /usr/lib/python3/dist-packages, outside environment /usr</span><br><span class="line">Successfully installed pip-10.0.1</span><br><span class="line">root@TIM:~# pip3 list</span><br><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;/usr/bin/pip3&quot;, line 9, in &lt;module&gt;</span><br><span class="line">    from pip import main</span><br><span class="line">ImportError: cannot import name &apos;main&apos;</span><br></pre></td></tr></table></figure></p>
+<p>搜索stackoverflow上答案如下<br>要恢复<code>pip3</code>二进制文件，需要运行<code>python3 -m pip uninstall pip &amp;&amp; apt isntall python3-pip --reinstall</code></p>
+<p>运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">root@TIM:~# python3 -m pip uninstall pip</span><br><span class="line">Uninstalling pip-10.0.1:</span><br><span class="line">  Would remove:</span><br><span class="line">    /usr/bin/pip3</span><br><span class="line">    /usr/local/bin/pip</span><br><span class="line">    /usr/local/bin/pip3</span><br><span class="line">    /usr/local/bin/pip3.5</span><br><span class="line">    /usr/local/lib/python3.5/dist-packages/pip-10.0.1.dist-info/*</span><br><span class="line">    /usr/local/lib/python3.5/dist-packages/pip/*</span><br><span class="line">Proceed (y/n)? y</span><br><span class="line">  Successfully uninstalled pip-10.0.1</span><br><span class="line">You are using pip version 8.1.1, however version 10.0.1 is available.</span><br><span class="line">You should consider upgrading via the &apos;pip install --upgrade pip&apos; command.</span><br><span class="line">root@TIM:~# apt install python3-pip --reinstall</span><br><span class="line">Reading package lists... Done</span><br><span class="line">Building dependency tree       </span><br><span class="line">Reading state information... Done</span><br><span class="line">0 upgraded, 0 newly installed, 1 reinstalled, 0 to remove and 133 not upgraded.</span><br><span class="line">Need to get 0 B/109 kB of archives.</span><br><span class="line">After this operation, 0 B of additional disk space will be used.</span><br><span class="line">(Reading database ... 100738 files and directories currently installed.)</span><br><span class="line">Preparing to unpack .../python3-pip_8.1.1-2ubuntu0.4_all.deb ...</span><br><span class="line">Unpacking python3-pip (8.1.1-2ubuntu0.4) over (8.1.1-2ubuntu0.4) ...</span><br><span class="line">Processing triggers for man-db (2.7.5-1) ...</span><br><span class="line">Setting up python3-pip (8.1.1-2ubuntu0.4) ...</span><br></pre></td></tr></table></figure></p>
+<p>Python3环境下使用<code>python3 -m pip XXXXX</code>替代<code>pip3</code></p>
+<p><a href="https://stackoverflow.com/" target="_blank" rel="noopener">stackoverflow</a>和<a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>真是个好地方！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -748,7 +754,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">26</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -759,7 +765,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -770,7 +776,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
